@@ -1,1 +1,1 @@
-# ribbon
+# Coinoutpost, a clone of Coinbase

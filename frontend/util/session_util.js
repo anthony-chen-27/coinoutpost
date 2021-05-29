@@ -2,7 +2,7 @@ export const login = (info) => {
     return $.ajax({
         method: "POST",
         url: "/api/session",
-        data: info
+        data: {user: info}
     })
 }
 
@@ -17,6 +17,6 @@ export const signup = (info) => {
     return $.ajax({
         method: "POST",
         url: "/api/users",
-        data: info
+        data: {user: info}
     })
 }

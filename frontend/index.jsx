@@ -1,11 +1,25 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import ConfigureStore from './store/store'
-
+import configureStore from './store/store'
+import Main from './component/main'
+import * as test from './action/session_action'
 
 document.addEventListener('DOMContentLoaded', () => {
     const root = document.getElementById('root')
-    const store = ConfigureStore()
+    window.test = test
+    let store;
+    if (window.currentUser) {
+        const preloadedState = {
+            entities: {
+            users: { [window.currentUser.id]: window.currentUser }
+            },
+            session: { id: window.currentUser.id }
+        };
+        store = configureStore(preloadedState);
+        delete window.currentUser;
+    } else {
+        store = configureStore();
+    }
     window.store = store
-    ReactDOM.render(<h3>Hello</h3>, root)
+    ReactDOM.render(<Main store={store} />, root)
 })

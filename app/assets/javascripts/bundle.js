@@ -420,7 +420,7 @@ __webpack_require__.r(__webpack_exports__);
 
   switch (action.type) {
     case "RECEIVE_SESSION_ERRORS":
-      return action.errors;
+      return action.errors || [];
 
     case "RECEIVE_CURRENT_USER":
       return [];
@@ -532,6 +532,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "login", function() { return login; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logout", function() { return logout; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signup", function() { return signup; });
+// Info here expects 2 args, username and password
 var login = function login(info) {
   return $.ajax({
     method: "POST",
@@ -546,7 +547,8 @@ var logout = function logout() {
     method: "DELETE",
     url: "/api/session"
   });
-};
+}; // Info here expects 4 args, username, password, first_name, and last_name
+
 var signup = function signup(info) {
   return $.ajax({
     method: "POST",

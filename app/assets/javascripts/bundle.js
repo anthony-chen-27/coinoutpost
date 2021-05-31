@@ -168,7 +168,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
+ // In addition to the default Route provided by react-router, 3 more are provided below
+// AuthRoute, used for routes that can only be accessed when logged out
+// ProtectedRoute, used for routes that can only be access when logged in
+// DefaultRoute, wildcard route, covers invalid routes, redirects to splash page when not logged in and directs to dashboard when logged in.
+//TODO Probably replace this wildcard route with a 404 component with a button to return to splash or dashboard just like how coinbase does it
 
 var App = function App() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
@@ -282,7 +286,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
+ // Wraps the main app.jsx in a hashrouter so that routes in app.jsx can work
+// Provider provides react-redux functionalities to components
 
 var Root = function Root(_ref) {
   var store = _ref.store;
@@ -529,6 +534,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+ // Current user bootstrapped through preloaded state so that refreshing the page does not cause a user to be logged out
 
 document.addEventListener('DOMContentLoaded', function () {
   var root = document.getElementById('root');

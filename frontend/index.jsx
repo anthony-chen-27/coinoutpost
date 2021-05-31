@@ -4,6 +4,8 @@ import configureStore from './store/store'
 import Root from './component/root'
 import * as test from './action/session_action'
 
+
+// Current user bootstrapped through preloaded state so that refreshing the page does not cause a user to be logged out
 document.addEventListener('DOMContentLoaded', () => {
     const root = document.getElementById('root')
     window.test = test

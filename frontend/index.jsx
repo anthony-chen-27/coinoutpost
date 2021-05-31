@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import configureStore from './store/store'
-import Main from './component/main'
+import Root from './component/root'
 import * as test from './action/session_action'
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -21,5 +21,5 @@ document.addEventListener('DOMContentLoaded', () => {
         store = configureStore();
     }
     window.store = store
-    ReactDOM.render(<Main store={store} />, root)
+    ReactDOM.render(<Root store={store} />, root)
 })

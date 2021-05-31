@@ -208,19 +208,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function HomeButton() {
-  var history = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["useHistory"])();
-
-  function handleClick() {
-    history.push("/");
-  }
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    type: "button",
-    onClick: handleClick
-  }, "Go home");
-}
-
 var mSTP = function mSTP(_ref) {
   var session = _ref.session,
       users = _ref.entities.users;
@@ -229,23 +216,22 @@ var mSTP = function mSTP(_ref) {
   };
 };
 
-var Dashboard = function Dashboard(props) {
-  var history = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["useHistory"])();
+var Dashboard = function Dashboard(_ref2) {
+  var logout = _ref2.logout;
 
   function handleClick() {
-    props.logout();
+    logout();
   }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "This is the dashboard"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     type: "button",
     onClick: handleClick
-  }, "Go home"));
-}; // export default HomeButton
+  }, "Logout"));
+};
 
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(null, {
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(null, {
   logout: _action_session_action__WEBPACK_IMPORTED_MODULE_3__["logout"]
-})(Dashboard));
+})(Dashboard)));
 
 /***/ }),
 
@@ -624,17 +610,17 @@ var mSTP = function mSTP(state) {
 function Protected(_ref) {
   var children = _ref.children,
       loggedIn = _ref.loggedIn,
-      rest = _objectWithoutProperties(_ref, ["children", "loggedIn"]);
+      history = _ref.history,
+      location = _ref.location,
+      rest = _objectWithoutProperties(_ref, ["children", "loggedIn", "history", "location"]);
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], _extends({}, rest, {
     render: function render(_ref2) {
       var location = _ref2.location;
       return loggedIn ? children : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
         to: {
-          pathname: "/",
-          state: {
-            from: location
-          }
+          pathname: "/login",
+          from: location.pathname
         }
       });
     }
@@ -644,14 +630,13 @@ function Protected(_ref) {
 function Auth(_ref3) {
   var children = _ref3.children,
       loggedIn = _ref3.loggedIn,
-      rest = _objectWithoutProperties(_ref3, ["children", "loggedIn"]);
+      history = _ref3.history,
+      rest = _objectWithoutProperties(_ref3, ["children", "loggedIn", "history"]);
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], _extends({}, rest, {
     render: function render() {
       return !loggedIn ? children : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
-        to: {
-          pathname: "/dashboard"
-        }
+        to: "/dashboard"
       });
     }
   }));

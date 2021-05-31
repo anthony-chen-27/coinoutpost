@@ -7,7 +7,7 @@ const mSTP = (state) => {
 }
 
 
-function Protected({ children, loggedIn, ...rest }) {
+function Protected({ children, loggedIn, history, location, ...rest }) {
     return (
       <Route
         {...rest}
@@ -17,8 +17,8 @@ function Protected({ children, loggedIn, ...rest }) {
           ) : (
             <Redirect
               to={{
-                pathname: "/",
-                state: { from: location }
+                pathname: "/login",
+                from: location.pathname
               }}/>
           )
         }
@@ -26,19 +26,16 @@ function Protected({ children, loggedIn, ...rest }) {
     );
 }
 
-function Auth({ children, loggedIn, ...rest}) {
+function Auth({ children, loggedIn, history, ...rest}) {
     return (
         <Route
             {...rest}
-            render={() =>
-            !loggedIn ? (
-                children
-            ) : (
-                <Redirect
-                to={{
-                    pathname: "/dashboard",
-                }}/>
-            )
+            render= {() =>
+                !loggedIn ? (
+                    children
+                ) : (
+                    <Redirect to= "/dashboard"/>
+                )
             }
         />
     )

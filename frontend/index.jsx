@@ -9,18 +9,24 @@ import * as test from './action/session_action'
 document.addEventListener('DOMContentLoaded', () => {
     const root = document.getElementById('root')
     window.test = test
-    let store;
+    let store
     if (window.currentUser) {
         const preloadedState = {
             entities: {
             users: { [window.currentUser.id]: window.currentUser }
             },
+            coins: window.coins,
             session: { id: window.currentUser.id }
         };
-        store = configureStore(preloadedState);
-        delete window.currentUser;
+        store = configureStore(preloadedState)
+        delete window.currentUser
+        delete window.coins
     } else {
-        store = configureStore();
+        const preloadedState = {
+            coins: window.coins
+        }
+        store = configureStore(preloadedState)
+        delete window.coins
     }
     window.store = store
     ReactDOM.render(<Root store={store} />, root)

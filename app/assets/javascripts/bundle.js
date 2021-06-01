@@ -90,7 +90,7 @@
 /*!*******************************************!*\
   !*** ./frontend/action/session_action.js ***!
   \*******************************************/
-/*! exports provided: receiveErrors, login, logout, signup */
+/*! exports provided: receiveErrors, login, logout, signup, update */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -99,6 +99,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "login", function() { return login; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logout", function() { return logout; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signup", function() { return signup; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "update", function() { return update; });
 /* harmony import */ var _util_session_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/session_util */ "./frontend/util/session_util.js");
 
 var receiveErrors = function receiveErrors(errors) {
@@ -140,6 +141,14 @@ var signup = function signup(info) {
     }, function (err) {
       return dispatch(receiveErrors(err.responseJSON));
     });
+  };
+}; // When called, updates the lastUpdated value in the session state
+// Value stands for last time the user's balance value was updated
+
+var update = function update() {
+  return {
+    type: "UPDATE_SESSION",
+    time: new Date()
   };
 };
 
@@ -546,20 +555,43 @@ document.addEventListener('DOMContentLoaded', function () {
       entities: {
         users: _defineProperty({}, window.currentUser.id, window.currentUser)
       },
+      coins: window.coins,
       session: {
         id: window.currentUser.id
       }
     };
     store = Object(_store_store__WEBPACK_IMPORTED_MODULE_2__["default"])(preloadedState);
     delete window.currentUser;
+    delete window.coins;
   } else {
-    store = Object(_store_store__WEBPACK_IMPORTED_MODULE_2__["default"])();
+    var _preloadedState = {
+      coins: window.coins
+    };
+    store = Object(_store_store__WEBPACK_IMPORTED_MODULE_2__["default"])(_preloadedState);
+    delete window.coins;
   }
 
   window.store = store;
   react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_component_root__WEBPACK_IMPORTED_MODULE_3__["default"], {
     store: store
   }), root);
+});
+
+/***/ }),
+
+/***/ "./frontend/reducer/coins_reducer.js":
+/*!*******************************************!*\
+  !*** ./frontend/reducer/coins_reducer.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  return state;
 });
 
 /***/ }),
@@ -616,6 +648,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _session_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./session_reducer */ "./frontend/reducer/session_reducer.js");
 /* harmony import */ var _entities_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./entities_reducer */ "./frontend/reducer/entities_reducer.js");
 /* harmony import */ var _errors_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./errors_reducer */ "./frontend/reducer/errors_reducer.js");
+/* harmony import */ var _coins_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./coins_reducer */ "./frontend/reducer/coins_reducer.js");
+
 
 
 
@@ -623,7 +657,8 @@ __webpack_require__.r(__webpack_exports__);
 var rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   entities: _entities_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
   session: _session_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
-  errors: _errors_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
+  errors: _errors_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
+  coins: _coins_reducer__WEBPACK_IMPORTED_MODULE_4__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (rootReducer);
 
@@ -667,7 +702,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-    id: null
+    id: null,
+    lastUpdated: null
   };
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
@@ -682,6 +718,11 @@ __webpack_require__.r(__webpack_exports__);
       return {
         id: null
       };
+
+    case "UPDATE_SESSION":
+      var nextState = Object.assign({}, state);
+      nextState.lastUpdated = action.time;
+      return nextState;
 
     default:
       return state;

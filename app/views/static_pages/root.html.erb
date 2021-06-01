@@ -1,0 +1,13 @@
+<script type="text/javascript">
+  window.coins = <%= render("api/coins/coins.json.jbuilder",
+    coins: Coin.all).html_safe %>
+</script>
+<% if logged_in? %>
+  <script type="text/javascript">
+  	window.currentUser = <%= render("api/users/user.json.jbuilder",
+  		user: current_user).html_safe %>
+  </script>
+<% end %>
+
+
+<div id='root'>Root Page (No React)</div>

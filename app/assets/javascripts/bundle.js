@@ -100,7 +100,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var fetchHoldings = function fetchHoldings(id) {
   return function (dispatch) {
-    _util_holding_util__WEBPACK_IMPORTED_MODULE_0__["fetchHoldings"](id).then(function (data) {
+    return _util_holding_util__WEBPACK_IMPORTED_MODULE_0__["fetchHoldings"](id).then(function (data) {
       dispatch({
         type: "RECEIVE_HOLDINGS",
         data: data
@@ -299,16 +299,26 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+function calculateBalance(holdings, prices, coins) {
+  var total = 0;
+  holdings.forEach(function (holding) {
+    total += holding.amount * prices[coins[holding.cryptoId].name].usd;
+  });
+  return total;
+}
+
 var mSTP = function mSTP(_ref) {
   var session = _ref.session,
       _ref$entities = _ref.entities,
       users = _ref$entities.users,
       holdings = _ref$entities.holdings,
-      coins = _ref.coins;
+      coins = _ref.coins,
+      prices = _ref.prices;
   return {
     currentUser: users[session.id],
-    coins: Object.values(coins),
-    holdings: Object.values(holdings)
+    coins: coins,
+    holdings: Object.values(holdings),
+    prices: prices
   };
 };
 
@@ -318,38 +328,56 @@ var Dashboard = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(Dashboard);
 
   function Dashboard(props) {
+    var _this;
+
     _classCallCheck(this, Dashboard);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    _this.state = {
+      loading: true
+    };
+    return _this;
   }
 
   _createClass(Dashboard, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var _this = this;
+      var _this2 = this;
 
-      this.props.fetchHoldings(this.props.currentUser.id);
-      this.props.getCurrentPrice(this.props.coins.map(function (coin) {
-        return coin.name;
-      }));
+      // this.props.fetchHoldings(this.props.currentUser.id).then(() => {this.setState({loading: false})})
+      var coins = this.props.coins; // this.props.getCurrentPrice(coins)
+
+      Promise.all([this.props.fetchHoldings(this.props.currentUser.id), this.props.getCurrentPrice(coins)]).then(function () {
+        return _this2.setState({
+          loading: false
+        });
+      });
       this.timer = setInterval(function () {
-        return _this.props.getCurrentPrice(_this.props.coins.map(function (coin) {
-          return coin.name;
-        }));
+        return _this2.props.getCurrentPrice(coins);
       }, 60000);
     }
   }, {
     key: "render",
     value: function render() {
+      if (this.state.loading) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Loading");
+      }
+
       var _this$props = this.props,
           logout = _this$props.logout,
           currentUser = _this$props.currentUser;
       var coins = this.props.coins;
+      var balance = 0;
+
+      if (!jQuery.isEmptyObject(this.props.prices.current)) {
+        balance = calculateBalance(this.props.holdings, this.props.prices.current, coins);
+      }
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "This is the dashboard"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Welcome ", currentUser.firstName, " ", currentUser.lastName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "user_id: ", currentUser.id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "username: ", currentUser.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Current holdings:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.holdings.map(function (holding, i) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: i
         }, coins[holding.cryptoId].name, " : ", holding.amount);
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Current Balance is "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Current Balance is : ", balance, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "button",
         onClick: function onClick(e) {
           logout();
@@ -848,7 +876,7 @@ var rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])(
   session: _session_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
   errors: _errors_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
   coins: _coins_reducer__WEBPACK_IMPORTED_MODULE_4__["default"],
-  price: _price_reducer__WEBPACK_IMPORTED_MODULE_5__["default"]
+  prices: _price_reducer__WEBPACK_IMPORTED_MODULE_5__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (rootReducer);
 
@@ -1004,6 +1032,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCurrentPrices", function() { return fetchCurrentPrices; });
 // Given a array of coinnames, fetches the current prices of the coins from coingecko api
 var fetchCurrentPrices = function fetchCurrentPrices(coins) {
+  coins = Object.values(coins).map(function (coin) {
+    return coin.name;
+  });
   var ids = coins.join(",");
   var vs_currencies = 'usd';
   return $.ajax({

@@ -86,11 +86,62 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./frontend/action/holding_action.js":
+/*!*******************************************!*\
+  !*** ./frontend/action/holding_action.js ***!
+  \*******************************************/
+/*! exports provided: fetchHoldings */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchHoldings", function() { return fetchHoldings; });
+/* harmony import */ var _util_holding_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/holding_util */ "./frontend/util/holding_util.jsx");
+
+var fetchHoldings = function fetchHoldings(id) {
+  return function (dispatch) {
+    _util_holding_util__WEBPACK_IMPORTED_MODULE_0__["fetchHoldings"](id).then(function (data) {
+      dispatch({
+        type: "RECEIVE_HOLDINGS",
+        data: data
+      });
+    });
+  };
+};
+
+/***/ }),
+
+/***/ "./frontend/action/price_action.js":
+/*!*****************************************!*\
+  !*** ./frontend/action/price_action.js ***!
+  \*****************************************/
+/*! exports provided: getCurrentPrice */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCurrentPrice", function() { return getCurrentPrice; });
+/* harmony import */ var _util_price_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/price_util */ "./frontend/util/price_util.jsx");
+ // Expects an array of coin names
+
+var getCurrentPrice = function getCurrentPrice(coins) {
+  return function (dispatch) {
+    _util_price_util__WEBPACK_IMPORTED_MODULE_0__["fetchCurrentPrices"](coins).then(function (data) {
+      return dispatch({
+        type: "RECEIVE_CURRENT_PRICE",
+        data: data
+      });
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/action/session_action.js":
 /*!*******************************************!*\
   !*** ./frontend/action/session_action.js ***!
   \*******************************************/
-/*! exports provided: receiveErrors, login, logout, signup, update */
+/*! exports provided: receiveErrors, login, logout, signup */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -99,7 +150,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "login", function() { return login; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logout", function() { return logout; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signup", function() { return signup; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "update", function() { return update; });
 /* harmony import */ var _util_session_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/session_util */ "./frontend/util/session_util.js");
 
 var receiveErrors = function receiveErrors(errors) {
@@ -144,13 +194,13 @@ var signup = function signup(info) {
   };
 }; // When called, updates the lastUpdated value in the session state
 // Value stands for last time the user's balance value was updated
-
-var update = function update() {
-  return {
-    type: "UPDATE_SESSION",
-    time: new Date()
-  };
-};
+// UNUSED FUNCTION
+// export const update = () => {
+//     return {
+//         type: "UPDATE_SESSION",
+//         time: new Date()
+//     }
+// }
 
 /***/ }),
 
@@ -218,6 +268,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _action_session_action__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../action/session_action */ "./frontend/action/session_action.js");
+/* harmony import */ var _action_price_action__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../action/price_action */ "./frontend/action/price_action.js");
+/* harmony import */ var _action_holding_action__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../action/holding_action */ "./frontend/action/holding_action.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
 
 
 
@@ -225,28 +301,75 @@ __webpack_require__.r(__webpack_exports__);
 
 var mSTP = function mSTP(_ref) {
   var session = _ref.session,
-      users = _ref.entities.users;
+      _ref$entities = _ref.entities,
+      users = _ref$entities.users,
+      holdings = _ref$entities.holdings,
+      coins = _ref.coins;
   return {
-    currentUser: users[session.id]
+    currentUser: users[session.id],
+    coins: Object.values(coins),
+    holdings: Object.values(holdings)
   };
 };
 
-var Dashboard = function Dashboard(_ref2) {
-  var logout = _ref2.logout,
-      currentUser = _ref2.currentUser;
+var Dashboard = /*#__PURE__*/function (_React$Component) {
+  _inherits(Dashboard, _React$Component);
 
-  function handleClick() {
-    logout();
+  var _super = _createSuper(Dashboard);
+
+  function Dashboard(props) {
+    _classCallCheck(this, Dashboard);
+
+    return _super.call(this, props);
   }
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "This is the dashboard"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Welcome ", currentUser.firstName, " ", currentUser.lastName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "user_id: ", currentUser.id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "username: ", currentUser.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    type: "button",
-    onClick: handleClick
-  }, "Logout"));
-};
+  _createClass(Dashboard, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this = this;
+
+      this.props.fetchHoldings(this.props.currentUser.id);
+      this.props.getCurrentPrice(this.props.coins.map(function (coin) {
+        return coin.name;
+      }));
+      this.timer = setInterval(function () {
+        return _this.props.getCurrentPrice(_this.props.coins.map(function (coin) {
+          return coin.name;
+        }));
+      }, 60000);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          logout = _this$props.logout,
+          currentUser = _this$props.currentUser;
+      var coins = this.props.coins;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "This is the dashboard"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Welcome ", currentUser.firstName, " ", currentUser.lastName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "user_id: ", currentUser.id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "username: ", currentUser.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Current holdings:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.holdings.map(function (holding, i) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: i
+        }, coins[holding.cryptoId].name, " : ", holding.amount);
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Current Balance is "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "button",
+        onClick: function onClick(e) {
+          logout();
+        }
+      }, "Logout"));
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      window.clearInterval(this.timer);
+    }
+  }]);
+
+  return Dashboard;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mSTP, {
-  logout: _action_session_action__WEBPACK_IMPORTED_MODULE_3__["logout"]
+  logout: _action_session_action__WEBPACK_IMPORTED_MODULE_3__["logout"],
+  getCurrentPrice: _action_price_action__WEBPACK_IMPORTED_MODULE_4__["getCurrentPrice"],
+  fetchHoldings: _action_holding_action__WEBPACK_IMPORTED_MODULE_5__["fetchHoldings"]
 })(Dashboard)));
 
 /***/ }),
@@ -476,6 +599,9 @@ var Signup = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(event) {
       event.preventDefault();
+      var tmp = Object.assign({}, this.state);
+      tmp.first_name = tmp.first_name[0].toUpperCase() + tmp.first_name.substring(1);
+      tmp.last_name = tmp.last_name[0].toUpperCase() + tmp.last_name.substring(1);
       this.props.signup(this.state);
     }
   }, {
@@ -607,10 +733,13 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducer/users_reducer.js");
+/* harmony import */ var _holdings_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./holdings_reducer */ "./frontend/reducer/holdings_reducer.js");
+
 
 
 var entitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
-  users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"]
+  users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
+  holdings: _holdings_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (entitiesReducer);
 
@@ -635,6 +764,64 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./frontend/reducer/holdings_reducer.js":
+/*!**********************************************!*\
+  !*** ./frontend/reducer/holdings_reducer.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var holdingsReducer = function holdingsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case "RECEIVE_HOLDINGS":
+      return action.data;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (holdingsReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducer/price_reducer.js":
+/*!*******************************************!*\
+  !*** ./frontend/reducer/price_reducer.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+
+
+var currentReducer = function currentReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case "RECEIVE_CURRENT_PRICE":
+      return action.data;
+
+    default:
+      return state;
+  }
+};
+
+var priceReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
+  current: currentReducer
+});
+/* harmony default export */ __webpack_exports__["default"] = (priceReducer);
+
+/***/ }),
+
 /***/ "./frontend/reducer/root_reducer.js":
 /*!******************************************!*\
   !*** ./frontend/reducer/root_reducer.js ***!
@@ -649,6 +836,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _entities_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./entities_reducer */ "./frontend/reducer/entities_reducer.js");
 /* harmony import */ var _errors_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./errors_reducer */ "./frontend/reducer/errors_reducer.js");
 /* harmony import */ var _coins_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./coins_reducer */ "./frontend/reducer/coins_reducer.js");
+/* harmony import */ var _price_reducer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./price_reducer */ "./frontend/reducer/price_reducer.js");
+
 
 
 
@@ -658,7 +847,8 @@ var rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])(
   entities: _entities_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
   session: _session_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
   errors: _errors_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
-  coins: _coins_reducer__WEBPACK_IMPORTED_MODULE_4__["default"]
+  coins: _coins_reducer__WEBPACK_IMPORTED_MODULE_4__["default"],
+  price: _price_reducer__WEBPACK_IMPORTED_MODULE_5__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (rootReducer);
 
@@ -702,8 +892,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-    id: null,
-    lastUpdated: null
+    id: null
   };
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
@@ -718,11 +907,6 @@ __webpack_require__.r(__webpack_exports__);
       return {
         id: null
       };
-
-    case "UPDATE_SESSION":
-      var nextState = Object.assign({}, state);
-      nextState.lastUpdated = action.time;
-      return nextState;
 
     default:
       return state;
@@ -782,6 +966,55 @@ var configureStore = function configureStore() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (configureStore);
+
+/***/ }),
+
+/***/ "./frontend/util/holding_util.jsx":
+/*!****************************************!*\
+  !*** ./frontend/util/holding_util.jsx ***!
+  \****************************************/
+/*! exports provided: fetchHoldings */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchHoldings", function() { return fetchHoldings; });
+// Given id of an user, fetches that user's holdings
+var fetchHoldings = function fetchHoldings(id) {
+  return $.ajax({
+    method: "GET",
+    url: '/api/holdings',
+    data: {
+      id: id
+    }
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/price_util.jsx":
+/*!**************************************!*\
+  !*** ./frontend/util/price_util.jsx ***!
+  \**************************************/
+/*! exports provided: fetchCurrentPrices */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCurrentPrices", function() { return fetchCurrentPrices; });
+// Given a array of coinnames, fetches the current prices of the coins from coingecko api
+var fetchCurrentPrices = function fetchCurrentPrices(coins) {
+  var ids = coins.join(",");
+  var vs_currencies = 'usd';
+  return $.ajax({
+    method: "GET",
+    url: "https://api.coingecko.com/api/v3/simple/price",
+    data: {
+      ids: ids,
+      vs_currencies: vs_currencies
+    }
+  });
+};
 
 /***/ }),
 

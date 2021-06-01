@@ -33,4 +33,10 @@ class User < ApplicationRecord
         obj = BCrypt::Password.new(self.password_digest)
         obj.is_password?(password)
     end
+
+    has_many :holdings,
+        class_name: :Holding,
+        foreign_key: :user_id
+        
+    
 end

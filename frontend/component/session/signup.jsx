@@ -12,6 +12,9 @@ class Signup extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        let tmp = Object.assign({}, this.state)
+        tmp.first_name = tmp.first_name[0].toUpperCase() + tmp.first_name.substring(1);
+        tmp.last_name = tmp.last_name[0].toUpperCase() + tmp.last_name.substring(1);
         this.props.signup(this.state)
     }
 

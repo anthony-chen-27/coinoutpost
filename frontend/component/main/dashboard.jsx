@@ -30,9 +30,7 @@ class Dashboard extends React.Component {
     }
 
     componentDidMount() {
-        // this.props.fetchHoldings(this.props.currentUser.id).then(() => {this.setState({loading: false})})
         const {coins} = this.props
-        // this.props.getCurrentPrice(coins)
         Promise.all([this.props.fetchHoldings(this.props.currentUser.id), this.props.getCurrentPrice(coins)]).then(() => this.setState({loading: false}))
         this.timer = setInterval(() => this.props.getCurrentPrice(coins), 60000)
     }

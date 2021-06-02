@@ -344,9 +344,8 @@ var Dashboard = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      // this.props.fetchHoldings(this.props.currentUser.id).then(() => {this.setState({loading: false})})
-      var coins = this.props.coins; // this.props.getCurrentPrice(coins)
-
+      console.log("mounted");
+      var coins = this.props.coins;
       Promise.all([this.props.fetchHoldings(this.props.currentUser.id), this.props.getCurrentPrice(coins)]).then(function () {
         return _this2.setState({
           loading: false

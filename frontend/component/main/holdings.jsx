@@ -26,7 +26,7 @@ class Holdings extends React.Component {
             return null
         }
         return (
-            <div className='content'>
+            <div className='holdings'>
                 <h1>Current holdings</h1>
                 <ul>
                     {this.props.holdings.map((holding, i) => {return <li key={i}>{this.props.coins[holding.cryptoId].name} : {holding.amount}</li>})}

@@ -1,0 +1,8 @@
+.main_header {
+    position: fixed;
+    height: 50px;
+    width: calc(100% - 200px);
+    left: 200px;
+    background-color: gray;
+    z-index: 200;
+}

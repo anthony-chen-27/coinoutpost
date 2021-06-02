@@ -1,0 +1,17 @@
+.main_content {
+    display: flex;
+    position: relative;
+    left: 200px;
+    width: calc(100% - 200px);
+    top: 50px;
+    z-index: 0;
+}
+
+.testing {
+    height: 2000px;
+    background-color: aquamarine;
+}
+
+.dashboard, .holdings {
+    padding-left: 20px;
+}

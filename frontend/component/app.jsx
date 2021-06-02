@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Redirect, Switch, Link } from 'react-router-dom'
-import Splash from './main/splash'
+import Splash from './splash/splash'
 import Login from './session/login'
 import Signup from './session/signup'
 import {AuthRoute, ProtectedRoute, DefaultRoute} from '../util/route_util'
@@ -8,6 +8,7 @@ import Dashboard from './main/dashboard'
 import Holdings from './main/holdings'
 import { connect } from 'react-redux'
 import Sidebar from './sidebar/sidebar'
+import Mainheader from './header/main_header'
 import './app.css'
 
 const mSTP = ({session, entities: {users}}) => {
@@ -26,7 +27,8 @@ const App = ({currentUser, loggedIn}) => {
     return (
         <div className='main'>
             {loggedIn ? <Sidebar /> : null}
-            <div className={loggedIn ? 'dashboard' : 'splash'}>
+            {loggedIn ? <Mainheader /> : null}
+            <div className={loggedIn ? 'main_content' : 'splash'}>
                 <Switch>
                     <AuthRoute exact path='/'> <Splash /> </AuthRoute>
                     <AuthRoute path='/login'> <Login /> </AuthRoute>

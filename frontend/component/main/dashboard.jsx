@@ -4,6 +4,7 @@ import { Link, withRouter } from "react-router-dom";
 import { logout } from '../../action/session_action'
 import { getCurrentPrice } from '../../action/price_action'
 import { fetchHoldings } from '../../action/holding_action'
+import './dashboard.css'
 
 function calculateBalance(holdings, prices, coins) {
     let total = 0
@@ -46,14 +47,14 @@ class Dashboard extends React.Component {
             balance = calculateBalance(this.props.holdings, this.props.prices.current, coins)
         }
         return (
-            <div className="content">
-                <h3>This is the dashboard</h3>
+            <div className='dashboard'>
+                <h2>This is the dashboard</h2>
                 <h3>Welcome {currentUser.firstName} {currentUser.lastName}</h3>
                 <h3>user_id: {currentUser.id}</h3>
                 <h3>username: {currentUser.username}</h3>
-                <Link to='/holdings'>Click to view holdings</Link>
                 <h3>Current Balance is : {balance} </h3>
-                <button type="button" onClick={(e) => {logout()}}>
+                <button type="button" onClick={(e) => {console.log('hi')
+                logout()}}>
                 Logout
                 </button>
                 <div className='testing'></div>      

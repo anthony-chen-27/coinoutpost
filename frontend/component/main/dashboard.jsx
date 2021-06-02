@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { logout } from '../../action/session_action'
 import { getCurrentPrice } from '../../action/price_action'
 import { fetchHoldings } from '../../action/holding_action'
@@ -37,7 +37,7 @@ class Dashboard extends React.Component {
 
     render() {
         if (this.state.loading) {
-            return <h1>Loading</h1>
+            return null
         }
         const {logout, currentUser} = this.props
         const {coins} = this.props
@@ -46,19 +46,17 @@ class Dashboard extends React.Component {
             balance = calculateBalance(this.props.holdings, this.props.prices.current, coins)
         }
         return (
-            <div>
+            <div className="content">
                 <h3>This is the dashboard</h3>
                 <h3>Welcome {currentUser.firstName} {currentUser.lastName}</h3>
                 <h3>user_id: {currentUser.id}</h3>
                 <h3>username: {currentUser.username}</h3>
-                <h3>Current holdings:</h3>
-                <ul>
-                    {this.props.holdings.map((holding, i) => {return <li key={i}>{coins[holding.cryptoId].name} : {holding.amount}</li>})}
-                </ul>
+                <Link to='/holdings'>Click to view holdings</Link>
                 <h3>Current Balance is : {balance} </h3>
                 <button type="button" onClick={(e) => {logout()}}>
                 Logout
-                </button>          
+                </button>
+                <div className='testing'></div>      
             </div>
         )
     }

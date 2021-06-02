@@ -4,7 +4,7 @@ import * as sessionUtil from "../util/session_util"
 export const receiveErrors = errors => ({
     type: "RECEIVE_SESSION_ERRORS",
     errors
-  });
+});
 
 export const login = (info) => (dispatch) => {
     sessionUtil.login(info).then(

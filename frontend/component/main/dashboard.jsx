@@ -4,6 +4,7 @@ import { Link, withRouter } from "react-router-dom";
 import { logout } from '../../action/session_action'
 import { getCurrentPrice } from '../../action/price_action'
 import { fetchHoldings } from '../../action/holding_action'
+import DashboardGraph from './dashboard_graph.jsx'
 import './dashboard.css'
 
 function calculateBalance(holdings, prices, coins) {
@@ -55,7 +56,9 @@ class Dashboard extends React.Component {
                 <button type="button" onClick={(e) => {logout()}}>
                 Logout
                 </button>
-                <div className='testing'></div>      
+                <div style={{width:400, height:300}}><DashboardGraph coin={this.props.coins[1]} />Bitcoin</div>
+                <div style={{width:400, height:300}}><DashboardGraph coin={this.props.coins[2]} />Ethereum</div>
+                <div style={{width:400, height:300}}><DashboardGraph coin={this.props.coins[3]} />Tether</div>
             </div>
         )
     }

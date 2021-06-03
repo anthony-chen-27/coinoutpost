@@ -6,3 +6,9 @@ export const getCurrentPrice = (coins) => (dispatch) => {
         data => dispatch({type: "RECEIVE_CURRENT_PRICE", data})
     )
 }
+
+export const getDayPrice = (coin) => (dispatch) => {
+    return PriceUtil.fetchDay(coin.name).then(
+        data => dispatch({type: "RECEIVE_DAY_PRICE", coin, data: data.prices})
+    )
+} 

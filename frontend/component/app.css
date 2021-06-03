@@ -2,10 +2,6 @@
     height: 100%;
 }
 
-.splash {
-    padding-left: 20px;
-}
-
 head {
     margin: 0px;
     padding: 0px;
@@ -17,9 +13,9 @@ body {
     height: 100%;
 }
 
-a,a:hover, a:visited{
-    border:none;
-    outline:none;
-    text-decoration:none;
+a, a:hover, a:visited{
+    border:none !important;
+    outline:none !important;
+    text-decoration:none !important;
     color:inherit;
 }

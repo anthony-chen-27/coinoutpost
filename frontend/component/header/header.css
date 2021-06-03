@@ -6,3 +6,52 @@
     background-color: gray;
     z-index: 200;
 }
+
+.splash-header {
+    height: 55px;
+    border-bottom: 1px solid lightgray;
+}
+
+.splash-header-content {
+    margin: 0 20%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.splash-home-button {
+    background: transparent;
+    outline: none;
+    border: none;
+    font-weight: 600;
+    font-size: 20px;
+    color: rgb(0, 82, 255);
+}
+
+
+.splash-session {
+    margin-left: 70%;
+}
+
+#sign-in-btn {
+    margin-right:10px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+#sign-in-btn:hover {
+    color:rgb(0, 82, 255)
+}
+
+#sign-up-btn {
+    color: white;
+    background-color: rgb(0, 82, 255);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 8px;
+    border-radius: 3px;
+}
+
+#sign-up-btn:hover {
+    background-color: rgb(3, 68, 207);
+}

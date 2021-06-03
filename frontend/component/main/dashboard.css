@@ -7,11 +7,8 @@
     z-index: 0;
 }
 
-.testing {
-    height: 2000px;
-    background-color: aquamarine;
-}
 
-.dashboard, .holdings {
+.dashboard, .holdings, .watchlist {
     padding-left: 20px;
+    width: 100%;
 }

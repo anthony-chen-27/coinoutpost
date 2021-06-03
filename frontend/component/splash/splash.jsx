@@ -1,15 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import Button from 'react-bootstrap/Button'
+import Modal from 'react-bootstrap/Modal'
+import Splashheader from '../header/splash_header'
+import './splash.css'
 
 const Splash = () => {
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     return (
         <div>
-            <div><Link to='/'><h1>Coinoutpost</h1></Link></div>
-            Testing
-            <br/>
-            <Link to="/login">Login</Link>
-            <br/>
-            <Link to="/signup">Sign up</Link>
+            <Splashheader />
+            <div className='splash_content'>
+                Testing
+                <br/>
+                <Button variant="primary" onClick={handleShow}>
+                    Launch demo modal
+                </Button>
+                <Modal show={show} onHide={handleClose} size="sm">
+                    <Modal.Body>
+                        <h4>Edit Item</h4>
+                    </Modal.Body>
+                </Modal>
+            </div>
         </div>
     )
 }

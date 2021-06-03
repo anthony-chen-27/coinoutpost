@@ -32,7 +32,7 @@ class Sidebar extends React.Component {
     render() {
         return (
             <div className='sidebar'>
-                <button onClick={()=> {this.props.history.replace('/dashboard')}}>Coinoutpost</button>
+                <button className='sidebar-home-button' onClick={() => this.props.history.replace('/dashboard')}>coinoutpost</button>
                 <ul>
                     <li className={this.check_path('/dashboard')}><Link to='/dashboard'>Home</Link></li>
                     <li className={this.check_path('/holdings')}><Link to='/holdings'>Holdings</Link></li>

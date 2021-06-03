@@ -12,3 +12,10 @@ export const fetchCurrentPrices = (coins) => {
         }
     })
 }
+
+export const fetchDay = (coin_name) => {
+    return $.ajax({
+        method: "GET",
+        url: `https://api.coingecko.com/api/v3/coins/${coin_name}/market_chart?vs_currency=usd&days=1`
+    })
+}

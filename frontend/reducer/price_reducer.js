@@ -9,9 +9,19 @@ const currentReducer = (state = {}, action) => {
     }
 }
 
+const priceHistoryReducer = (state = {}, action) => {
+    switch(action.type) {
+        case "RECEIVE_DAY_PRICE":
+            return Object.assign({}, state, {[action.coin.name]: action.data})
+        default:
+            return state
+    }
+}
+
 
 const priceReducer = combineReducers({
     current: currentReducer, 
+    day: priceHistoryReducer 
 })
 
 export default priceReducer

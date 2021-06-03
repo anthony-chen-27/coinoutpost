@@ -21,7 +21,7 @@ const mSTP = ({session, entities: {users}}) => {
 
 // In addition to the default Route provided by react-router, 3 more are provided below
 // AuthRoute, used for routes that can only be accessed when logged out
-// ProtectedRoute, used for routes that can only be access when logged in
+// ProtectedRoute, used for routes that can only be accessed when logged in
 // DefaultRoute, wildcard route, covers invalid routes, redirects to splash page when not logged in and directs to dashboard when logged in.
     //TODO Probably replace this wildcard route with a 404 component with a button to return to splash or dashboard just like how coinbase does it
 const App = ({currentUser, loggedIn}) => {

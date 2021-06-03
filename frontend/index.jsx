@@ -3,12 +3,13 @@ import ReactDOM from 'react-dom'
 import configureStore from './store/store'
 import Root from './component/root'
 import * as test from './action/watchlist_action'
-
+import * as test2 from './action/price_action'
 
 // Current user bootstrapped through preloaded state so that refreshing the page does not cause a user to be logged out
 document.addEventListener('DOMContentLoaded', () => {
     const root = document.getElementById('root')
     window.test = test
+    window.test2 = test2
     let store
     if (window.currentUser) {
         const preloadedState = {

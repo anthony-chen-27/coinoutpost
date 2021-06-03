@@ -6,6 +6,7 @@ import Signup from './session/signup'
 import {AuthRoute, ProtectedRoute, DefaultRoute} from '../util/route_util'
 import Dashboard from './main/dashboard'
 import Holdings from './main/holdings'
+import Trade from './main/trade'
 import { connect } from 'react-redux'
 import Sidebar from './sidebar/sidebar'
 import Mainheader from './header/main_header'
@@ -35,6 +36,7 @@ const App = ({currentUser, loggedIn}) => {
                     <AuthRoute path='/signup'> <Signup /> </AuthRoute>
                     <ProtectedRoute exact path='/dashboard'> <Dashboard /> </ProtectedRoute>
                     <ProtectedRoute exact path='/holdings'> <Holdings user={currentUser}/> </ProtectedRoute>
+                    <ProtectedRoute exact path='/trade'> <Trade user={currentUser}/> </ProtectedRoute>
                     <DefaultRoute path="*" />
                 </Switch>
             </div>

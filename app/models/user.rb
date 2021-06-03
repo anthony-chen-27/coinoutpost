@@ -37,6 +37,10 @@ class User < ApplicationRecord
     has_many :holdings,
         class_name: :Holding,
         foreign_key: :user_id
+    
+    has_many :watching,
+        class_name: :Watchlist,
+        foreign_key: :user_id
         
     
 end

@@ -1,10 +1,11 @@
 .main_content {
     display: flex;
     position: relative;
-    left: 200px;
-    width: calc(100% - 200px);
-    top: 50px;
+    left: 250px;
+    width: calc(100% - 250px);
+    top: 60px;
     z-index: 0;
+    background-color: rgb(246, 249, 252);
 }
 
 

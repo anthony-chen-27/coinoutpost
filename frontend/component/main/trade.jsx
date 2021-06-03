@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { fetchWatchlist} from '../../action/watchlist_action'
-import WatchlistItem from './watchlist_item' 
+import WatchlistItem from './trade/watchlist_item' 
 
 const mSTP = ({entities, coins, prices, ui}) => {
     return {

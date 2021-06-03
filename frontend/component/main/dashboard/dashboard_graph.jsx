@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getDayPrice } from '../../action/price_action'
+import { getDayPrice } from '../../../action/price_action'
 import { Sparklines, SparklinesLine } from 'react-sparklines';
 
 

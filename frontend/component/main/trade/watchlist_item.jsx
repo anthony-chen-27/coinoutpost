@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { createWatch, removeWatch } from '../../action/watchlist_action'
+import { createWatch, removeWatch } from '../../../action/watchlist_action'
 
 const mSTP = ({entities, prices}) => {
     return {

@@ -1,0 +1,146 @@
+.session-body {
+    height: 100vh;
+    width: 100vw;
+    background-color: #1652f0;
+}
+
+.session-content {
+    width: 100%;
+    height: calc(100vh - 66px);
+}
+
+/* Login stuff */
+
+.session-login-box {
+    width: 400px;
+    height: 80vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#session-text {
+    margin: 50px 0 30px;
+    color: white;
+    font-size: 28px;
+}
+
+.session-login-form {
+    width: 100%;
+    height: 230px;
+    background-color: white;
+    border-radius: 3px;
+    box-shadow: 0px 0px 3px gray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.session-login-input {
+    display: block;
+    width: 85%;
+    font-size: 14px;
+    border-radius: 3px;
+    margin-bottom: 16px;
+    height: 40px;
+    border: 1px solid rgba(211,211,211 ,0.5 );
+    transition: border 0.7s;
+    padding: 0 0 0 2%;
+}
+
+.session-login-input:focus {
+    outline: none;
+    border: 1px solid rgba(0,0,255,0.5);
+}
+
+.login-controls {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    width: 85%;
+}
+
+.login-controls button{
+    padding: 13px 20px;
+    background-image: linear-gradient(#1652f0,#0d40c6);
+    font-size: 12px;
+    font-weight: 400;
+    border-radius: 2px;
+    color: white;
+    outline: none;
+    border-style:hidden;
+}
+.login-controls button:hover{
+    background-image: linear-gradient(#0d40c6,#0d40c6);
+    cursor:pointer;
+}
+
+/* Signup stuff */
+.session-signup-form {
+    width: 480px;
+    height: 480px;
+    background-color: white;
+    border-radius: 3px;
+    box-shadow: 0px 0px 3px gray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.signup-name {
+    display: flex;
+    margin-top: 40px;
+    justify-content: space-between;
+    width: 89%;
+}
+
+.signup-name input{
+    width: 43%;
+}
+
+.signup-name input, .session-signup-input {
+    font-size: 18px;
+    border-radius: 3px;
+    margin-bottom: 16px;
+    height: 60px;
+    border: 1px solid rgba(211,211,211 ,0.5 );
+    transition: border 0.7s;
+    padding: 0 0 0 4%;
+}
+
+.session-signup-input {
+    display: block;
+    width: 85%;
+}
+
+
+.signup-name input:focus, .session-signup-input:focus {
+    outline: none;
+    border: 1px solid rgba(0,0,255,0.5);
+}
+
+.session-signup-btn {
+    width: 89%;
+    height: 60px;
+    background-image: linear-gradient(#1652f0,#0d40c6);
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 4px;
+    color: white;
+    outline: none;
+    border-style:hidden;
+}
+
+.session-signup-btn[disabled] {
+    background-image: none;
+    background-color: #8ba9f7;
+}
+
+.session-signup-btn[disabled]:hover {
+    cursor: default;
+}
+
+.session-signup-btn:hover {
+    cursor: pointer;
+}
+

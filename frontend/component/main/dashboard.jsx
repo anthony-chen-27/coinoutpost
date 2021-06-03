@@ -4,7 +4,7 @@ import { Link, withRouter } from "react-router-dom";
 import { logout } from '../../action/session_action'
 import { getCurrentPrice } from '../../action/price_action'
 import { fetchHoldings } from '../../action/holding_action'
-import DashboardGraph from './dashboard_graph.jsx'
+import DashboardGraph from './dashboard/dashboard_graph.jsx'
 import './dashboard.css'
 
 function calculateBalance(holdings, prices, coins) {

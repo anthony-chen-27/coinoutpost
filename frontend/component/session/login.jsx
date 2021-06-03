@@ -2,6 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { login } from '../../action/session_action'
+import './session.css'
+import Sessionheader from '../header/session_header'
 
 const mSTP = ({errors}) => {
     return {
@@ -20,7 +22,7 @@ class Login extends React.Component {
         super(props)
         this.state = {username: '', password: ''}
         this.handleSubmit = this.handleSubmit.bind(this)
-
+        this.demo = this.demo.bind(this)
     }
 
     renderErrors() {
@@ -52,22 +54,32 @@ class Login extends React.Component {
         }
     }
 
+    componentDidMount() {
+        document.addEventListener("keydown", (e) => {if (e.key === 'Enter') {this.handleSubmit(e)}});
+    }
+
+    demo(e) {
+        e.preventDefault()
+        this.props.login({username: 'hello', password: 'testing'})
+    }
+
     render() {
         return (
-            <div>
-                <div><Link to='/'><h1>Coinoutpost</h1></Link></div>
-                <form>
-                    <label> Username
-                        <input type="text" value={this.state.username} onChange={this.update('username')}/>
-                    </label>
-                    <br/>
-                    <label> Password
-                        <input type="text" value={this.state.password} onChange={this.update('password')}/>
-                    </label>
-                    <br/>
-                    <button onClick={this.handleSubmit}>Log In</button>
-                </form>
-                {this.renderErrors()}
+            <div className='session-body'>
+                <Sessionheader />
+                <div className='session-content'>
+                    <div className='session-login-box'>
+                        <div id='session-text'>Sign in to Coinoutpost</div>
+                        <div className='session-login-form'>
+                            <input style={{marginTop:30}}className='session-login-input' type="text" placeholder='Username' value={this.state.username} onChange={this.update('username')}/>
+                            <input className='session-login-input' type="password" placeholder='Password' value={this.state.password} onChange={this.update('password')}/>
+                            <div className='login-controls'>
+                                <button onClick={this.demo}>DEMO USER</button>
+                                <button onClick={this.handleSubmit}>SIGN IN</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }

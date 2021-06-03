@@ -30,4 +30,7 @@
     color: rgb(0, 82, 255);
 }
 
+.sidebar-home-button:hover {
+    cursor: pointer;
+}
 

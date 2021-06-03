@@ -126,7 +126,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var getCurrentPrice = function getCurrentPrice(coins) {
   return function (dispatch) {
-    _util_price_util__WEBPACK_IMPORTED_MODULE_0__["fetchCurrentPrices"](coins).then(function (data) {
+    return _util_price_util__WEBPACK_IMPORTED_MODULE_0__["fetchCurrentPrices"](coins).then(function (data) {
       return dispatch({
         type: "RECEIVE_CURRENT_PRICE",
         data: data
@@ -160,7 +160,7 @@ var receiveErrors = function receiveErrors(errors) {
 };
 var login = function login(info) {
   return function (dispatch) {
-    _util_session_util__WEBPACK_IMPORTED_MODULE_0__["login"](info).then(function (user) {
+    return _util_session_util__WEBPACK_IMPORTED_MODULE_0__["login"](info).then(function (user) {
       return dispatch({
         type: "RECEIVE_CURRENT_USER",
         user: user
@@ -172,7 +172,7 @@ var login = function login(info) {
 };
 var logout = function logout() {
   return function (dispatch) {
-    _util_session_util__WEBPACK_IMPORTED_MODULE_0__["logout"]().then(function (user) {
+    return _util_session_util__WEBPACK_IMPORTED_MODULE_0__["logout"]().then(function (user) {
       return dispatch({
         type: "LOGOUT_CURRENT_USER"
       });
@@ -183,7 +183,7 @@ var logout = function logout() {
 };
 var signup = function signup(info) {
   return function (dispatch) {
-    _util_session_util__WEBPACK_IMPORTED_MODULE_0__["signup"](info).then(function (user) {
+    return _util_session_util__WEBPACK_IMPORTED_MODULE_0__["signup"](info).then(function (user) {
       return dispatch({
         type: "RECEIVE_CURRENT_USER",
         user: user
@@ -201,6 +201,72 @@ var signup = function signup(info) {
 //         time: new Date()
 //     }
 // }
+
+/***/ }),
+
+/***/ "./frontend/action/ui_action.js":
+/*!**************************************!*\
+  !*** ./frontend/action/ui_action.js ***!
+  \**************************************/
+/*! exports provided: updateUi */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateUi", function() { return updateUi; });
+var updateUi = function updateUi(bool) {
+  return {
+    type: "UPDATE_UI",
+    loading: bool
+  };
+};
+
+/***/ }),
+
+/***/ "./frontend/action/watchlist_action.js":
+/*!*********************************************!*\
+  !*** ./frontend/action/watchlist_action.js ***!
+  \*********************************************/
+/*! exports provided: fetchWatchlist, createWatch, removeWatch */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchWatchlist", function() { return fetchWatchlist; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createWatch", function() { return createWatch; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeWatch", function() { return removeWatch; });
+/* harmony import */ var _util_watchlist_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/watchlist_util */ "./frontend/util/watchlist_util.jsx");
+
+var fetchWatchlist = function fetchWatchlist(user_id) {
+  return function (dispatch) {
+    return _util_watchlist_util__WEBPACK_IMPORTED_MODULE_0__["fetchWatchlist"](user_id).then(function (data) {
+      return dispatch({
+        type: "RECEIVE_WATCHLIST",
+        data: data
+      });
+    });
+  };
+};
+var createWatch = function createWatch(payload) {
+  return function (dispatch) {
+    return _util_watchlist_util__WEBPACK_IMPORTED_MODULE_0__["createWatch"](payload).then(function (data) {
+      return dispatch({
+        type: "RECEIVE_WATCH",
+        data: data
+      });
+    });
+  };
+};
+var removeWatch = function removeWatch(watch_id) {
+  return function (dispatch) {
+    return _util_watchlist_util__WEBPACK_IMPORTED_MODULE_0__["removeWatch"](watch_id).then(function (data) {
+      return dispatch({
+        type: "REMOVE_WATCH",
+        data: data
+      });
+    });
+  };
+};
 
 /***/ }),
 
@@ -250,10 +316,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _util_route_util__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../util/route_util */ "./frontend/util/route_util.jsx");
 /* harmony import */ var _main_dashboard__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./main/dashboard */ "./frontend/component/main/dashboard.jsx");
 /* harmony import */ var _main_holdings__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./main/holdings */ "./frontend/component/main/holdings.jsx");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _sidebar_sidebar__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./sidebar/sidebar */ "./frontend/component/sidebar/sidebar.jsx");
-/* harmony import */ var _header_main_header__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./header/main_header */ "./frontend/component/header/main_header.jsx");
-/* harmony import */ var _app_css__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./app.css */ "./frontend/component/app.css");
+/* harmony import */ var _main_trade__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./main/trade */ "./frontend/component/main/trade.jsx");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _sidebar_sidebar__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./sidebar/sidebar */ "./frontend/component/sidebar/sidebar.jsx");
+/* harmony import */ var _header_main_header__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./header/main_header */ "./frontend/component/header/main_header.jsx");
+/* harmony import */ var _app_css__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./app.css */ "./frontend/component/app.css");
+
 
 
 
@@ -286,7 +354,7 @@ var App = function App(_ref2) {
       loggedIn = _ref2.loggedIn;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "main"
-  }, loggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_sidebar_sidebar__WEBPACK_IMPORTED_MODULE_9__["default"], null) : null, loggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_header_main_header__WEBPACK_IMPORTED_MODULE_10__["default"], null) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, loggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_sidebar_sidebar__WEBPACK_IMPORTED_MODULE_10__["default"], null) : null, loggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_header_main_header__WEBPACK_IMPORTED_MODULE_11__["default"], null) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: loggedIn ? 'main_content' : 'splash'
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_5__["AuthRoute"], {
     exact: true,
@@ -303,12 +371,17 @@ var App = function App(_ref2) {
     path: "/holdings"
   }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_main_holdings__WEBPACK_IMPORTED_MODULE_7__["default"], {
     user: currentUser
+  }), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_5__["ProtectedRoute"], {
+    exact: true,
+    path: "/trade"
+  }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_main_trade__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    user: currentUser
   }), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_5__["DefaultRoute"], {
     path: "*"
   }))));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_8__["connect"])(mSTP)(App));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_9__["connect"])(mSTP)(App));
 
 /***/ }),
 
@@ -528,14 +601,11 @@ var Dashboard = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       var coins = this.props.coins;
-      Promise.all([this.props.fetchHoldings(this.props.currentUser.id), this.props.getCurrentPrice(coins)]).then(function () {
+      Promise.all([this.props.fetchHoldings(this.props.currentUser.id)]).then(function () {
         return _this2.setState({
           loading: false
         });
       });
-      this.timer = setInterval(function () {
-        return _this2.props.getCurrentPrice(coins);
-      }, 60000);
     }
   }, {
     key: "render",
@@ -559,17 +629,11 @@ var Dashboard = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "This is the dashboard"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Welcome ", currentUser.firstName, " ", currentUser.lastName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "user_id: ", currentUser.id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "username: ", currentUser.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Current Balance is : ", balance, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "button",
         onClick: function onClick(e) {
-          console.log('hi');
           logout();
         }
       }, "Logout"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "testing"
       }));
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      window.clearInterval(this.timer);
     }
   }]);
 
@@ -685,6 +749,250 @@ var Holdings = /*#__PURE__*/function (_React$Component) {
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mSTP, {
   fetchHoldings: _action_holding_action__WEBPACK_IMPORTED_MODULE_2__["fetchHoldings"]
 })(Holdings));
+
+/***/ }),
+
+/***/ "./frontend/component/main/trade.jsx":
+/*!*******************************************!*\
+  !*** ./frontend/component/main/trade.jsx ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _action_watchlist_action__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../action/watchlist_action */ "./frontend/action/watchlist_action.js");
+/* harmony import */ var _watchlist_item__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./watchlist_item */ "./frontend/component/main/watchlist_item.jsx");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+
+var mSTP = function mSTP(_ref) {
+  var entities = _ref.entities,
+      coins = _ref.coins,
+      prices = _ref.prices,
+      ui = _ref.ui;
+  return {
+    holdings: Object.values(entities.holdings),
+    coins: coins,
+    prices: prices.current,
+    ui: ui,
+    watchlist: entities.watchlist
+  };
+}; // const WatchlistItem = ({coin, watchlist, prices, createWatch, removeWatch}) => {
+//     function handleChange(e) {
+//         e.preventDefault()
+//     }
+//     return (
+//         <li>{coin.name} :: {coin.shorthand} :: Current price: {prices[coin.name].usd}
+//         <input type="checkbox" checked={watchlist ? 1 : 0}/>
+//         </li>
+//     )
+// }
+
+
+var Trade = /*#__PURE__*/function (_React$Component) {
+  _inherits(Trade, _React$Component);
+
+  var _super = _createSuper(Trade);
+
+  function Trade(props) {
+    var _this;
+
+    _classCallCheck(this, Trade);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      loading: true
+    };
+    return _this;
+  }
+
+  _createClass(Trade, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      this.props.fetchWatchlist(this.props.user.id).then(function () {
+        _this2.setState({
+          loading: false
+        });
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this3 = this;
+
+      if (this.state.loading || this.props.ui.loading) {
+        return null;
+      }
+
+      var coins = Object.values(this.props.coins);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "watchlist"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, coins.map(function (coin, index) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_watchlist_item__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          key: index,
+          coin: coin,
+          user: _this3.props.user
+        });
+      })));
+    }
+  }]);
+
+  return Trade;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mSTP, {
+  fetchWatchlist: _action_watchlist_action__WEBPACK_IMPORTED_MODULE_2__["fetchWatchlist"]
+})(Trade));
+
+/***/ }),
+
+/***/ "./frontend/component/main/watchlist_item.jsx":
+/*!****************************************************!*\
+  !*** ./frontend/component/main/watchlist_item.jsx ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _action_watchlist_action__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../action/watchlist_action */ "./frontend/action/watchlist_action.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+var mSTP = function mSTP(_ref) {
+  var entities = _ref.entities,
+      prices = _ref.prices;
+  return {
+    watchlist: entities.watchlist,
+    prices: prices.current
+  };
+};
+
+var WatchlistItem = /*#__PURE__*/function (_React$Component) {
+  _inherits(WatchlistItem, _React$Component);
+
+  var _super = _createSuper(WatchlistItem);
+
+  function WatchlistItem(props) {
+    var _this;
+
+    _classCallCheck(this, WatchlistItem);
+
+    _this = _super.call(this, props);
+    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+    _this.state = {
+      waiting: false
+    };
+    return _this;
+  } // have acces to createWatch and removeWatch
+
+
+  _createClass(WatchlistItem, [{
+    key: "handleChange",
+    value: function handleChange(e) {
+      var _this2 = this;
+
+      e.preventDefault();
+      this.setState({
+        waiting: true
+      }); //Was false, should create
+
+      if (e.target.checked) {
+        this.props.createWatch({
+          user_id: this.props.user.id,
+          crypto_id: this.props.coin.id
+        }).then(function () {
+          return _this2.setState({
+            waiting: false
+          });
+        });
+      } else {
+        this.props.removeWatch(this.props.watchlist[this.props.coin.id].id).then(function () {
+          return _this2.setState({
+            waiting: false
+          });
+        });
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          coin = _this$props.coin,
+          watchlist = _this$props.watchlist,
+          prices = _this$props.prices;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, coin.name, " :: ", coin.shorthand, " :: Current price: ", prices[coin.name].usd, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "checkbox",
+        checked: watchlist[coin.id] ? 1 : 0,
+        onChange: this.handleChange,
+        disabled: this.state.waiting
+      }));
+    }
+  }]);
+
+  return WatchlistItem;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mSTP, {
+  createWatch: _action_watchlist_action__WEBPACK_IMPORTED_MODULE_2__["createWatch"],
+  removeWatch: _action_watchlist_action__WEBPACK_IMPORTED_MODULE_2__["removeWatch"]
+})(WatchlistItem));
 
 /***/ }),
 
@@ -1044,6 +1352,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _sidebar_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./sidebar.css */ "./frontend/component/sidebar/sidebar.css");
+/* harmony import */ var _action_price_action__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../action/price_action */ "./frontend/action/price_action.js");
+/* harmony import */ var _action_ui_action__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../action/ui_action */ "./frontend/action/ui_action.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1069,7 +1379,16 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
- //TODO, add highlighting to element on sidebar when on certain url, EG: if on dashboard, then dashboard button on sidebar should be highlighted/accentuated
+
+
+
+
+var mSTP = function mSTP(_ref) {
+  var coins = _ref.coins;
+  return {
+    coins: coins
+  };
+};
 
 var Sidebar = /*#__PURE__*/function (_React$Component) {
   _inherits(Sidebar, _React$Component);
@@ -1083,6 +1402,19 @@ var Sidebar = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(Sidebar, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this = this;
+
+      var coins = this.props.coins;
+      this.props.getCurrentPrice(coins).then(function () {
+        return _this.props.updateUi(false);
+      });
+      this.timer = setInterval(function () {
+        return _this.props.getCurrentPrice(coins);
+      }, 60000);
+    }
+  }, {
     key: "check_path",
     value: function check_path(path) {
       if (path === this.props.location.pathname) {
@@ -1094,13 +1426,13 @@ var Sidebar = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this = this;
+      var _this2 = this;
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sidebar"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          _this.props.history.replace('/dashboard');
+          _this2.props.history.replace('/dashboard');
         }
       }, "Coinoutpost"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: this.check_path('/dashboard')
@@ -1110,17 +1442,21 @@ var Sidebar = /*#__PURE__*/function (_React$Component) {
         className: this.check_path('/holdings')
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
         to: "/holdings"
-      }, "Holdings"))));
+      }, "Holdings")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: this.check_path('/trade')
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+        to: "/trade"
+      }, "Trade"))));
     }
-  }, {
-    key: "componentDidMount",
-    value: function componentDidMount() {}
   }]);
 
   return Sidebar;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Sidebar));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mSTP, {
+  getCurrentPrice: _action_price_action__WEBPACK_IMPORTED_MODULE_4__["getCurrentPrice"],
+  updateUi: _action_ui_action__WEBPACK_IMPORTED_MODULE_5__["updateUi"]
+})(Sidebar)));
 
 /***/ }),
 
@@ -1168,7 +1504,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store/store */ "./frontend/store/store.js");
 /* harmony import */ var _component_root__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./component/root */ "./frontend/component/root.jsx");
-/* harmony import */ var _action_session_action__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./action/session_action */ "./frontend/action/session_action.js");
+/* harmony import */ var _action_watchlist_action__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./action/watchlist_action */ "./frontend/action/watchlist_action.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
@@ -1179,7 +1515,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 document.addEventListener('DOMContentLoaded', function () {
   var root = document.getElementById('root');
-  window.test = _action_session_action__WEBPACK_IMPORTED_MODULE_4__;
+  window.test = _action_watchlist_action__WEBPACK_IMPORTED_MODULE_4__;
   var store;
 
   if (window.currentUser) {
@@ -1246,12 +1582,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducer/users_reducer.js");
 /* harmony import */ var _holdings_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./holdings_reducer */ "./frontend/reducer/holdings_reducer.js");
+/* harmony import */ var _watchlist_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./watchlist_reducer */ "./frontend/reducer/watchlist_reducer.js");
+
 
 
 
 var entitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
-  holdings: _holdings_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
+  holdings: _holdings_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
+  watchlist: _watchlist_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (entitiesReducer);
 
@@ -1349,6 +1688,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _errors_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./errors_reducer */ "./frontend/reducer/errors_reducer.js");
 /* harmony import */ var _coins_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./coins_reducer */ "./frontend/reducer/coins_reducer.js");
 /* harmony import */ var _price_reducer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./price_reducer */ "./frontend/reducer/price_reducer.js");
+/* harmony import */ var _ui_reducer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./ui_reducer */ "./frontend/reducer/ui_reducer.js");
+
 
 
 
@@ -1360,7 +1701,8 @@ var rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])(
   session: _session_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
   errors: _errors_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
   coins: _coins_reducer__WEBPACK_IMPORTED_MODULE_4__["default"],
-  prices: _price_reducer__WEBPACK_IMPORTED_MODULE_5__["default"]
+  prices: _price_reducer__WEBPACK_IMPORTED_MODULE_5__["default"],
+  ui: _ui_reducer__WEBPACK_IMPORTED_MODULE_6__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (rootReducer);
 
@@ -1430,6 +1772,36 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./frontend/reducer/ui_reducer.js":
+/*!****************************************!*\
+  !*** ./frontend/reducer/ui_reducer.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var uiReducer = function uiReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+    loading: true
+  };
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case "UPDATE_UI":
+      return {
+        loading: action.loading
+      };
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (uiReducer);
+
+/***/ }),
+
 /***/ "./frontend/reducer/users_reducer.js":
 /*!*******************************************!*\
   !*** ./frontend/reducer/users_reducer.js ***!
@@ -1453,6 +1825,42 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return state;
   }
 });
+
+/***/ }),
+
+/***/ "./frontend/reducer/watchlist_reducer.js":
+/*!***********************************************!*\
+  !*** ./frontend/reducer/watchlist_reducer.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var watchlistReducer = function watchlistReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+  var nextState = Object.assign({}, state);
+
+  switch (action.type) {
+    case "RECEIVE_WATCHLIST":
+      return action.data;
+
+    case "RECEIVE_WATCH":
+      nextState[action.data.cryptoId] = action.data;
+      return nextState;
+
+    case "REMOVE_WATCH":
+      delete nextState[action.data.cryptoId];
+      return nextState;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (watchlistReducer);
 
 /***/ }),
 
@@ -1655,6 +2063,49 @@ var signup = function signup(info) {
     data: {
       user: info
     }
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/watchlist_util.jsx":
+/*!******************************************!*\
+  !*** ./frontend/util/watchlist_util.jsx ***!
+  \******************************************/
+/*! exports provided: fetchWatchlist, createWatch, removeWatch */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchWatchlist", function() { return fetchWatchlist; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createWatch", function() { return createWatch; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeWatch", function() { return removeWatch; });
+//Expects id of an user and fetches the coins that that user is watching
+var fetchWatchlist = function fetchWatchlist(user_id) {
+  return $.ajax({
+    method: "GET",
+    url: "/api/watchlists",
+    data: {
+      id: user_id
+    }
+  });
+}; //expects a data of {user_id: x, crypto_id: y} and creates an appropriate entry 
+//in the database
+
+var createWatch = function createWatch(data) {
+  return $.ajax({
+    method: "POST",
+    url: "/api/watchlists",
+    data: {
+      watch: data
+    }
+  });
+}; //Expects id of an watchlist entry and deletes that entry from the database
+
+var removeWatch = function removeWatch(watch_id) {
+  return $.ajax({
+    method: "DELETE",
+    url: "/api/watchlists/".concat(watch_id)
   });
 };
 

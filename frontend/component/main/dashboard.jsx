@@ -32,8 +32,7 @@ class Dashboard extends React.Component {
 
     componentDidMount() {
         const {coins} = this.props
-        Promise.all([this.props.fetchHoldings(this.props.currentUser.id), this.props.getCurrentPrice(coins)]).then(() => this.setState({loading: false}))
-        this.timer = setInterval(() => this.props.getCurrentPrice(coins), 60000)
+        Promise.all([this.props.fetchHoldings(this.props.currentUser.id)]).then(() => this.setState({loading: false}))
     }
 
     render() {
@@ -53,17 +52,12 @@ class Dashboard extends React.Component {
                 <h3>user_id: {currentUser.id}</h3>
                 <h3>username: {currentUser.username}</h3>
                 <h3>Current Balance is : {balance} </h3>
-                <button type="button" onClick={(e) => {console.log('hi')
-                logout()}}>
+                <button type="button" onClick={(e) => {logout()}}>
                 Logout
                 </button>
                 <div className='testing'></div>      
             </div>
         )
-    }
-
-    componentWillUnmount() {
-        window.clearInterval(this.timer)
     }
 }
 

@@ -13,20 +13,6 @@ const mSTP = ({entities, coins, prices, ui}) => {
     }
 }
 
-// const WatchlistItem = ({coin, watchlist, prices, createWatch, removeWatch}) => {
-
-//     function handleChange(e) {
-//         e.preventDefault()
-
-//     }
-
-//     return (
-//         <li>{coin.name} :: {coin.shorthand} :: Current price: {prices[coin.name].usd}
-//         <input type="checkbox" checked={watchlist ? 1 : 0}/>
-//         </li>
-//     )
-// }
-
 class Trade extends React.Component {
     constructor(props) {
         super(props)

@@ -6,7 +6,6 @@ import { getCurrentPrice } from '../../action/price_action'
 import { fetchHoldings } from '../../action/holding_action'
 import DashboardGraph from './dashboard/dashboard_graph.jsx'
 import './dashboard.css'
-import { Icon, InlineIcon } from '@iconify/react';
 
 import * as COIN_COLORS from 'crypto-colors'
 
@@ -65,10 +64,10 @@ class Dashboard extends React.Component {
                 <div className='watchlist-grid'>
                     <div><DashboardGraph coin={this.props.coins[1]} /></div>
                     <div><DashboardGraph coin={this.props.coins[2]} /></div>
-                    <div><DashboardGraph coin={this.props.coins[3]} /></div>
-                    <div><DashboardGraph coin={this.props.coins[5]} /></div>
-                    <div><DashboardGraph coin={this.props.coins[9]} /></div>
                     <div><DashboardGraph coin={this.props.coins[11]} /></div>
+                    <div><DashboardGraph coin={this.props.coins[7]} /></div>
+                    <div><DashboardGraph coin={this.props.coins[14]} /></div>
+                    <div><DashboardGraph coin={this.props.coins[12]} /></div>
                 </div>
             </div>
         )

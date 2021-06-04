@@ -2,12 +2,20 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { getDayPrice } from '../../../action/price_action'
 import { Sparklines, SparklinesLine } from 'react-sparklines';
+import * as COIN_COLORS from 'crypto-colors'
+import './dashboard_graphic.css'
 
-const mSTP = ({prices, coins}, {coin}) => {
+const mSTP = ({prices, coins, ui}, {coin}) => {
     return {
         coins,
+        current: prices.current,
+        ui,
         dayPrice: prices.day[coin.name]
     }
+}
+
+const capitalize = (string) => {
+    return string[0].toUpperCase() + string.substring(1)
 }
 
 class Dashboardgraph extends React.Component {
@@ -30,14 +38,32 @@ class Dashboardgraph extends React.Component {
     }
 
     render() {
-        if (this.state.loading) {
+        if (this.state.loading || this.props.ui.loading) {
             return null
         } else {
             let data = this.processData(this.props.dayPrice)
+            let {shorthand} = this.props.coin
+            let args = {name: shorthand.toLowerCase(), color: COIN_COLORS[shorthand].slice(1)}
+            let url = `https://api.iconify.design/cryptocurrency:${args.name}.svg?color=%23${args.color}&width=25px&height=25px`
+            let change = this.props.current[this.props.coin.name].usd_24h_change.toFixed(2)
             return (
-            <div>
+            <div className="coin-graph">
+                <div className='coin-graph-description'>
+                    <div className="coin-graph-icon-info">
+                        <img src={url} style={{ marginRight: '5%'}}/>{capitalize(this.props.coin.name)}
+                    </div>
+                    <div className='coin-graph-24h'>
+                        24h
+                    </div>
+                </div>
+                <div className='coin-graph-info'>
+                    <span style={{fontWeight: 600, fontSize: '18px'}}>{this.props.current[this.props.coin.name].usd.toLocaleString('en-US', {style: 'currency', currency: 'USD',})}</span>
+                    {change >= 0 ? 
+                    <span style={{color: 'green'}}>{change}%</span> :
+                    <span style={{color: 'red'}}>{change}%</span>}
+                </div>
                 <Sparklines data={data}>
-                    <SparklinesLine color='blue' style={{ fill: "none", strokeWidth: 1}}/>
+                    <SparklinesLine color={COIN_COLORS[shorthand]} style={{ fill: "none", strokeWidth: 1}}/>
                 </Sparklines>
             </div>
             )

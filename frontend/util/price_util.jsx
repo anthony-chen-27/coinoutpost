@@ -8,7 +8,8 @@ export const fetchCurrentPrices = (coins) => {
         url: "https://api.coingecko.com/api/v3/simple/price",
         data: {
             ids,
-            vs_currencies
+            vs_currencies,
+            include_24hr_change: true
         }
     })
 }

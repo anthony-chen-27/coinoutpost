@@ -149,8 +149,26 @@
     cursor: default;
 }
 
-.session-signup-btn:hover {
+.session-signup-btn:not([disabled]):hover {
     cursor: pointer;
     background-image: linear-gradient(#0d40c6,#0d40c6);
+}
+
+.redirect-to-login {
+    font-weight: 600;
+    margin-top: 20px;
+    color: white;
+}
+
+.redirect-to-login a{
+    font-weight: 600;
+    font-size: 16px;
+    color: white;
+    transition: color 0.2s;
+}
+
+.redirect-to-login a:hover{
+    text-decoration: none;
+    color: rgb(32, 66, 177);
 }
 

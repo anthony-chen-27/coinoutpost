@@ -7,19 +7,13 @@ import { fetchHoldings } from '../../action/holding_action'
 import DashboardGraph from './dashboard/dashboard_graph.jsx'
 import './dashboard.css'
 
-import * as COIN_COLORS from 'crypto-colors'
-
-
-function thing() {
-    fetch('https://api.iconify.design/cryptocurrency:bcc.svg').then(x => x.text()).then(d => console.log(<Icon icon={d}></Icon>))
-}
 
 function calculateBalance(holdings, prices, coins) {
     let total = 0
     holdings.forEach((holding) => {
         total += holding.amount * prices[coins[holding.cryptoId].name].usd 
     })
-    return total
+    return total.toLocaleString('en-US', {style: 'currency', currency: 'USD'})
 }
 
 const mSTP = ({session, entities: { users, holdings}, coins, prices}) => {
@@ -29,6 +23,10 @@ const mSTP = ({session, entities: { users, holdings}, coins, prices}) => {
         holdings: Object.values(holdings),
         prices
     }
+}
+
+const style = (count) => {
+    
 }
 
 

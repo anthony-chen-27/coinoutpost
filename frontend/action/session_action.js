@@ -26,13 +26,3 @@ export const signup = (info) => (dispatch) => {
         err => dispatch(receiveErrors(err.responseJSON))
     )
 }
-
-// When called, updates the lastUpdated value in the session state
-// Value stands for last time the user's balance value was updated
-// UNUSED FUNCTION
-// export const update = () => {
-//     return {
-//         type: "UPDATE_SESSION",
-//         time: new Date()
-//     }
-// }

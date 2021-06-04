@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-User.create({username: 'hello', password: 'testing', first_name: 'William', last_name: 'Shi'})
+User.create({username: 'hello', password: 'testing', first_name: 'William', last_name: 'Shi', amount: 200000})
 
 Coin.create({name: 'bitcoin', shorthand: 'BTC', image_url: ' '})
 Coin.create({name: 'ethereum', shorthand: 'ETH', image_url: ' '})
@@ -41,3 +41,9 @@ Watchlist.create({user_id: 1, crypto_id: 8})
 Watchlist.create({user_id: 1, crypto_id: 9})
 Watchlist.create({user_id: 1, crypto_id: 1})
 Watchlist.create({user_id: 1, crypto_id: 13})
+
+Transaction.create({sender_id: 1, receiver_id: nil, crypto_id: 5, amount: 20})
+Transaction.create({sender_id: 1, receiver_id: nil, crypto_id: 6, amount: 27})
+Transaction.create({sender_id: 1, receiver_id: nil, crypto_id: 5, amount: 13})
+Transaction.create({sender_id: 1, receiver_id: nil, crypto_id: 9, amount: 269})
+Transaction.create({sender_id: nil, receiver_id: 1, crypto_id: 3, amount: 23})

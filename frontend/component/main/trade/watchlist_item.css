@@ -1,0 +1,16 @@
+.watchlist-star {
+    width: 16px;
+    height: 16px;
+}
+
+.watchlist-star:hover {
+    cursor: pointer;
+}
+
+.watchlist-star[disabled] {
+    pointer-events: none;
+}
+
+.watchlist-item {
+    display: flex;
+}

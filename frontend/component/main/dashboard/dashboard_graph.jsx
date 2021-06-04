@@ -4,6 +4,7 @@ import { getDayPrice } from '../../../action/price_action'
 import { Sparklines, SparklinesLine } from 'react-sparklines';
 import * as COIN_COLORS from 'crypto-colors'
 import './dashboard_graphic.css'
+import ClipLoader from 'react-spinners/ClipLoader'
 
 const mSTP = ({prices, coins, ui}, {coin}) => {
     return {
@@ -25,7 +26,7 @@ class Dashboardgraph extends React.Component {
     }
 
     componentDidMount() {
-        this.props.getDayPrice(this.props.coin).then(() => this.setState({loading: false}))
+        this.props.getDayPrice(this.props.coin).then(() => {this.setState({loading: false})})
     }
 
     processData(raw) {
@@ -39,7 +40,7 @@ class Dashboardgraph extends React.Component {
 
     render() {
         if (this.state.loading || this.props.ui.loading) {
-            return null
+            return <div style={{display: 'flex', justifyContent: 'center'}}><ClipLoader color={'#1652f0'}/></div>
         } else {
             let data = this.processData(this.props.dayPrice)
             let {shorthand} = this.props.coin
@@ -57,7 +58,7 @@ class Dashboardgraph extends React.Component {
                     </div>
                 </div>
                 <div className='coin-graph-info'>
-                    <span style={{fontWeight: 600, fontSize: '18px'}}>{this.props.current[this.props.coin.name].usd.toLocaleString('en-US', {style: 'currency', currency: 'USD',})}</span>
+                    <span style={{fontWeight: 600, fontSize: '18px'}}>{this.props.current[this.props.coin.name].usd.toLocaleString('en-US', {style: 'currency', currency: 'USD'})}</span>
                     {change >= 0 ? 
                     <span style={{color: 'green'}}>{change}%</span> :
                     <span style={{color: 'red'}}>{change}%</span>}

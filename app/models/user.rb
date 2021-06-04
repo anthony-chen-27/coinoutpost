@@ -3,6 +3,7 @@ class User < ApplicationRecord
     validates :password_digest, presence: true
     before_validation :ensure_session_token
     validates :password, length: {minimum: 6}, allow_nil: true
+    validates :amount, :numericality => {greater_than_or_equal_to: 0}
 
     def ensure_session_token
         self.session_token ||= SecureRandom::urlsafe_base64
@@ -41,6 +42,9 @@ class User < ApplicationRecord
     has_many :watching,
         class_name: :Watchlist,
         foreign_key: :user_id
-        
+
+    def transactions
+        return Transaction.where("sender_id = ? OR receiver_id = ?", self.id, self.id)
+    end
     
 end

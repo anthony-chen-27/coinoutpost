@@ -27,14 +27,14 @@ const mSTP = ({session, entities: {users}}) => {
 const App = ({currentUser, loggedIn}) => {
     return (
         <div className='main'>
-            {/* {loggedIn ? <Sidebar /> : null} */}
+            {loggedIn ? <Sidebar /> : null}
             {loggedIn ? <Mainheader /> : null}
             <div className={loggedIn ? 'main_content' : 'splash'}>
                 <Switch>
                     <AuthRoute exact path='/'> <Splash /> </AuthRoute>
                     <AuthRoute path='/login'> <Login /> </AuthRoute>
                     <AuthRoute path='/signup'> <Signup /> </AuthRoute>
-                    {/* <ProtectedRoute exact path='/dashboard'> <Dashboard /> </ProtectedRoute> */}
+                    <ProtectedRoute exact path='/dashboard'> <Dashboard /> </ProtectedRoute>
                     <ProtectedRoute exact path='/holdings'> <Holdings user={currentUser}/> </ProtectedRoute>
                     <ProtectedRoute exact path='/trade'> <Trade user={currentUser}/> </ProtectedRoute>
                     <DefaultRoute path="*" />

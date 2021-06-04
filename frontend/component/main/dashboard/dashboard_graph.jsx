@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { getDayPrice } from '../../../action/price_action'
 import { Sparklines, SparklinesLine } from 'react-sparklines';
 
-
 const mSTP = ({prices, coins}, {coin}) => {
     return {
         coins,
@@ -35,11 +34,13 @@ class Dashboardgraph extends React.Component {
             return null
         } else {
             let data = this.processData(this.props.dayPrice)
-            console.log(data)
-
-            return <Sparklines data={data}>
-                <SparklinesLine color="blue" style={{ fill: "none", strokeWidth: 1}}/>
-            </Sparklines>
+            return (
+            <div>
+                <Sparklines data={data}>
+                    <SparklinesLine color='blue' style={{ fill: "none", strokeWidth: 1}}/>
+                </Sparklines>
+            </div>
+            )
         }
     }
 

@@ -20,6 +20,7 @@
     "@babel/preset-env": "^7.14.2",
     "@babel/preset-react": "^7.13.13",
     "babel-loader": "^8.2.2",
+    "crypto-colors": "^0.1.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.2.0",
@@ -33,6 +34,8 @@
     "webpack": "^4.46.0"
   },
   "devDependencies": {
+    "@iconify/icons-cryptocurrency": "^1.1.2",
+    "@iconify/react": "^1.1.4",
     "css-loader": "^5.2.6",
     "style-loader": "^2.0.0",
     "webpack-cli": "^4.7.0"

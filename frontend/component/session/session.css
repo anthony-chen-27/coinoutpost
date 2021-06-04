@@ -20,6 +20,16 @@
     align-items: center;
 }
 
+.session-login-box a {
+    margin-top: 10px;
+    font-weight: 400;
+    color: white;
+}
+
+.session-login-box a:hover{
+    text-decoration: underline;
+}
+
 #session-text {
     margin: 50px 0 30px;
     color: white;
@@ -40,7 +50,7 @@
 .session-login-input {
     display: block;
     width: 85%;
-    font-size: 14px;
+    font-size: 13px;
     border-radius: 3px;
     margin-bottom: 16px;
     height: 40px;
@@ -113,7 +123,6 @@
     width: 85%;
 }
 
-
 .signup-name input:focus, .session-signup-input:focus {
     outline: none;
     border: 1px solid rgba(0,0,255,0.5);
@@ -142,5 +151,6 @@
 
 .session-signup-btn:hover {
     cursor: pointer;
+    background-image: linear-gradient(#0d40c6,#0d40c6);
 }
 

@@ -15,9 +15,10 @@ class Mainheader extends React.Component {
     constructor(props) {
         super(props)
         this.text = {dashboard: "Home", holdings: "Holdings", trade: "Trade"}
-        this.state = {hidden: true}
+        this.state = {hidden: true, open: false}
         this.toggle = this.toggle.bind(this)
         this.handleClick = this.handleClick.bind(this)
+        this.toggleBuy = this.toggleBuy.bind(this)
     }
 
     toggle(e) {
@@ -25,7 +26,15 @@ class Mainheader extends React.Component {
         if (e.target.className == 'user-dropdown-menu' || e.target.className == 'dropdown-signout') {
             return
         }
-        this.setState({ hidden: !this.state.hidden });
+        this.setState({ hidden: !this.state.hidden })
+    }
+
+    toggleBuy(e) {
+        e.preventDefault()
+        if (e.target.className == 'buyModal') {
+            return
+        }
+        this.setState({ open: !this.state.open})
     }
 
     handleClick(e) {
@@ -37,9 +46,9 @@ class Mainheader extends React.Component {
             <div className='main-header'>
                 <div className='main-header-left'>{this.text[this.props.location.pathname.slice(1)]}</div>
                 <div className='main-header-right'>
-                    <button className='header-buy-btn'>Buy / Sell</button>
+                    <button className='header-buy-btn' onClick={this.toggleBuy}>Buy / Sell</button>
                     <div className='vertical-line'></div>
-                    <div className='user-menu-dropdown' onClick={this.toggle} tabIndex="1">
+                    <div className='user-menu-dropdown' onClick={this.toggle}>
                         <IconContext.Provider value={{style: {color: 'lightgray', fontSize: '34px'}}}>
                             <FaUserCircle />
                         </IconContext.Provider>
@@ -60,6 +69,15 @@ class Mainheader extends React.Component {
                             </div>
                         : null}
                     </div>
+                    {this.state.open ?
+                        <div> 
+                            <div className='graybg' onClick={this.toggleBuy}>
+                                <div className='buyModal'>
+                                    Buy and Sell, WIP
+                                </div>
+                            </div>
+                        </div>
+                     : null }
                 </div>
             </div>
         )

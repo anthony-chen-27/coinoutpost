@@ -4,6 +4,7 @@
     left: 250px;
     width: calc(100% - 250px);
     top: 60px;
+    height: 100%;
     z-index: 0;
     background-color: rgb(246, 249, 252);
 }
@@ -12,4 +13,12 @@
 .dashboard, .holdings, .watchlist {
     padding-left: 20px;
     width: 100%;
+}
+
+.watchlist-grid {
+    display: grid;
+    width: 90%;
+    grid-template-columns: auto auto auto;
+    margin: 0 auto;
+    background-color: white;
 }

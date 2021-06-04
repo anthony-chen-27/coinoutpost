@@ -6,6 +6,10 @@ import { getCurrentPrice } from '../../action/price_action'
 import { fetchHoldings } from '../../action/holding_action'
 import DashboardGraph from './dashboard/dashboard_graph.jsx'
 import './dashboard.css'
+// import { Icon, InlineIcon } from '@iconify/react';
+
+// import btc from '@iconify/icons-cryptocurrency/BTC'
+// import * as COIN_COLORS from 'crypto-colors'
 
 function calculateBalance(holdings, prices, coins) {
     let total = 0
@@ -56,9 +60,13 @@ class Dashboard extends React.Component {
                 <button type="button" onClick={(e) => {logout()}}>
                 Logout
                 </button>
-                <div style={{width:400, height:300}}><DashboardGraph coin={this.props.coins[1]} />Bitcoin</div>
-                <div style={{width:400, height:300}}><DashboardGraph coin={this.props.coins[2]} />Ethereum</div>
-                <div style={{width:400, height:300}}><DashboardGraph coin={this.props.coins[3]} />Tether</div>
+                <div className='watchlist-grid'>
+                    <div><DashboardGraph coin={this.props.coins[1]} />Bitcoin</div>
+                    <div><DashboardGraph coin={this.props.coins[2]} />Ethereum</div>
+                    <div><DashboardGraph coin={this.props.coins[3]} />Tether</div>
+                    <div><DashboardGraph coin={this.props.coins[4]} />???</div>
+                </div>
+                {/* <Icon icon={btc} color={COIN_COLORS['BTC']} height='50' width='50' /> */}
             </div>
         )
     }

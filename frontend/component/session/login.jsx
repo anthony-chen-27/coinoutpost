@@ -78,6 +78,7 @@ class Login extends React.Component {
                                 <button onClick={this.handleSubmit}>SIGN IN</button>
                             </div>
                         </div>
+                        <Link to='/signup'>Don't have an account?</Link>
                     </div>
                 </div>
             </div>

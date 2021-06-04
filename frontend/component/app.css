@@ -14,8 +14,7 @@ body {
 }
 
 a, a:hover, a:visited{
-    border:none !important;
-    outline:none !important;
-    text-decoration:none !important;
-    color:inherit;
+    border:none;
+    outline:none;
+    text-decoration:none;
 }

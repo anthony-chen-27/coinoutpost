@@ -5,6 +5,7 @@ import {FaUserCircle} from 'react-icons/fa'
 import {IconContext} from "react-icons"
 import { connect } from 'react-redux'
 import { logout } from '../../action/session_action'
+import Buymodal from '../modal/buy_modal'
 
 const mSTP = ({session, entities: {users}}) => {
     return {
@@ -31,13 +32,16 @@ class Mainheader extends React.Component {
 
     toggleBuy(e) {
         e.preventDefault()
-        if (e.target.className == 'buyModal') {
+        if (e.target.className === 'header-buy-btn') {
+            this.setState({ open: !this.state.open})
+        } else if (e.target.className !== 'graybg') {
             return
+        } else {
+            this.setState({ open: !this.state.open})
         }
-        this.setState({ open: !this.state.open})
     }
 
-    handleClick(e) {
+    handleClick() {
         this.props.logout()
     }
 
@@ -70,13 +74,7 @@ class Mainheader extends React.Component {
                         : null}
                     </div>
                     {this.state.open ?
-                        <div> 
-                            <div className='graybg' onClick={this.toggleBuy}>
-                                <div className='buyModal'>
-                                    Buy and Sell, WIP
-                                </div>
-                            </div>
-                        </div>
+                        <Buymodal toggleBuy={this.toggleBuy}/>
                      : null }
                 </div>
             </div>

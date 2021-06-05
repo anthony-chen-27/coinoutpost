@@ -20,17 +20,6 @@ class WatchlistItem extends React.Component {
         this.handleClick = this.handleClick.bind(this)
     }
 
-    // // have acces to createWatch and removeWatch
-    // handleChange(e) {
-    //     e.preventDefault()
-    //     this.setState({waiting: true})
-    //     //Was false, should create
-    //     if (e.target.checked) {
-    //         this.props.createWatch({user_id: this.props.user.id, crypto_id: this.props.coin.id}).then(() => this.setState({waiting: false}))
-    //     } else {
-    //         this.props.removeWatch(this.props.watchlist[this.props.coin.id].id).then(() => this.setState({waiting: false}))
-    //     }
-    // }
 
     handleClick(e) {
         console.log(this.state.checked)

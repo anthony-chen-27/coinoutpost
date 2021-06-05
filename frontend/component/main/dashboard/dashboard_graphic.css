@@ -1,7 +1,14 @@
-.coin-graph {
+.coin-graph, .default-graph-item {
     border-top: 1px solid rgba(191, 191, 191, 1);
     border-right: 1px solid rgba(191, 191, 191, 1);
 }
+
+.default-graph-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 
 .coin-graph-description {
     display: flex;

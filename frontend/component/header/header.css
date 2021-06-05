@@ -123,16 +123,6 @@
     cursor: default;
 }
 
-
-.buyModal {
-    position: fixed;
-    width: 300px;
-    height: 300px;
-    top: calc(50vh - 150px);
-    left: calc(50vw - 150px);
-    background-color: white;
-}
-
 /* Splash header styling */
 .splash-header {
     height: 65px;

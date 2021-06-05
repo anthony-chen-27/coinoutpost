@@ -1,0 +1,41 @@
+.buy-tab-controls {
+    width: 90%;
+    height: 100px;
+    border: 1px solid rgb(236, 239, 241);
+    border-radius: 3px;
+}
+
+.buy-tab-btns {
+    height: 50%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.buy-tab-btns:hover {
+    cursor: pointer;
+    background-color: #fafafa;
+}
+
+.buy-tab-btns-inner {
+    display: flex;
+    align-items: center;
+    padding: 3% 5%;
+    width: 90%;
+    height: auto;
+}
+
+.buy-btn-text {
+    color: rgb(121, 120, 120);
+    font-size: 14px;
+    font-weight: 400;
+    width: 25%;
+}
+
+.buy-btn-info {
+
+}
+
+.chevron {
+    margin-left: auto;
+}

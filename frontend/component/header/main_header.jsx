@@ -73,9 +73,9 @@ class Mainheader extends React.Component {
                             </div>
                         : null}
                     </div>
-                    {this.state.open ?
-                        <Buymodal toggleBuy={this.toggleBuy}/>
-                     : null }
+                    {this.state.open ? 
+                        <Buymodal key={1} toggleBuy={this.toggleBuy}/>
+                    : null }
                 </div>
             </div>
         )

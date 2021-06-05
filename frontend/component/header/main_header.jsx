@@ -5,7 +5,8 @@ import {FaUserCircle} from 'react-icons/fa'
 import {IconContext} from "react-icons"
 import { connect } from 'react-redux'
 import { logout } from '../../action/session_action'
-import Buymodal from '../modal/buy_modal'
+import Trademodal from '../modal/trade_modal'
+import { CSSTransition } from 'react-transition-group'
 
 const mSTP = ({session, entities: {users}}) => {
     return {
@@ -57,7 +58,7 @@ class Mainheader extends React.Component {
                             <FaUserCircle />
                         </IconContext.Provider>
                         <span>{this.props.currentUser.firstName}</span>
-                        {!this.state.hidden ?
+                        <CSSTransition in={!this.state.hidden} timeout={{}} unmountOnExit classNames='user-dropdown'>
                             <div>
                                 <div className="user-dropdown-menu" >
                                     <IconContext.Provider value={{style: {color: 'lightgray', fontSize: '60px', marginTop: '30px'}}}>
@@ -71,11 +72,12 @@ class Mainheader extends React.Component {
                                 <div className='graybg' onClick={this.toggle}>
                                 </div>
                             </div>
-                        : null}
+                        </CSSTransition>
                     </div>
-                    {this.state.open ? 
-                        <Buymodal key={1} toggleBuy={this.toggleBuy}/>
-                    : null }
+                    <CSSTransition in={this.state.open} timeout={{}}
+                        unmountOnExit classNames='trade-modal'>
+                        <Trademodal toggleBuy={this.toggleBuy}/>
+                    </CSSTransition>
                 </div>
             </div>
         )

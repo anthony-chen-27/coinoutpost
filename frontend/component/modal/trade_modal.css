@@ -1,0 +1,55 @@
+.trade-modal {
+    position: fixed;
+    width: 380px;
+    top: calc(50vh - 270px);
+    left: calc(50vw - 190px);
+    background-color: white;
+    border-style: none;
+    border-radius: 3px;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out, height 0.3s ease-out;
+    pointer-events: none;
+}
+
+.trade-modal-enter-done *{
+    opacity: 1;
+    pointer-events: visible;
+}
+
+.modal-header {
+    display: flex;
+    width: 100%;
+}
+
+.modal-header-item {
+    display: flex;
+    flex-grow: 1;
+    height: 60px;
+    align-items: center;
+    justify-content: center;
+    background-color: #11335305;
+    color: rgba(17, 51, 83, 0.6);
+    border-style: none;
+    font-weight: 600;
+    border-left: 1px solid rgb(236, 239, 241);
+    border-right: 1px solid rgb(236, 239, 241);
+    border-bottom: 1px solid rgb(236, 239, 241);
+}
+
+.modal-header-item:hover {
+    cursor: pointer;
+}
+
+.modal-header-item[value='1'] {
+    color: rgb(22, 82, 240);
+    background-color: white;
+    border-style: hidden;
+}
+
+.modal-buy-tab, .modal-sell-tab{
+    display: flex;
+    flex-grow: 100%;
+    flex-direction: column;
+    align-items: center;
+    height: calc(100% - 60px);
+}

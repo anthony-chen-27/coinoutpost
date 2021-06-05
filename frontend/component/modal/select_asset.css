@@ -1,0 +1,49 @@
+.select-asset-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    width: 100%;
+    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: -0.5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.select-asset-back {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    border-style: none;
+    border-radius: 20px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.select-asset-back:hover {
+    background-color: #fafafa;
+}
+
+.select-asset-list {
+    list-style: none;
+    position: relative;
+    top: 60px;
+    height: 540px;
+    overflow-y: scroll;
+    margin: 0;
+    padding: 0;
+}
+
+.select-asset-list li {
+    height: 60px;
+    width: 80%;
+    margin: 0 auto;
+    background-color: aqua;
+}
+

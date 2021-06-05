@@ -5,19 +5,19 @@
     border-radius: 3px;
 }
 
-.buy-tab-btns {
+.modal-tab-btn {
     height: 50%;
     width: 100%;
     display: flex;
     align-items: center;
 }
 
-.buy-tab-btns:hover {
+.modal-tab-btn:hover {
     cursor: pointer;
     background-color: #fafafa;
 }
 
-.buy-tab-btns-inner {
+.modal-tab-btn-inner {
     display: flex;
     align-items: center;
     padding: 3% 5%;
@@ -25,15 +25,11 @@
     height: auto;
 }
 
-.buy-btn-text {
+.modal-btn-text {
     color: rgb(121, 120, 120);
     font-size: 14px;
     font-weight: 400;
     width: 25%;
-}
-
-.buy-btn-info {
-
 }
 
 .chevron {

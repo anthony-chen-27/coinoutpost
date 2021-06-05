@@ -31,12 +31,12 @@ class WatchlistItem extends React.Component {
             this.props.removeWatch(this.props.watchlist[this.props.coin.id].id).then(() => this.setState({waiting: false, checked: !this.state.checked}))
         }
     }
+
     render() {
-        let {coin, watchlist, prices} = this.props
+        let {coin, prices} = this.props
         return (
             <li className='watchlist-item'>
                 {coin.name} :: {coin.shorthand} :: Current price: {prices[coin.name].usd.toLocaleString('en-US', {style: 'currency', currency: 'USD',})}
-                {/* <input type="checkbox" checked={watchlist[coin.id] ? 1 : 0} onChange={this.handleChange} disabled={this.state.waiting}/> */}
                 <div onClick={this.handleClick} className="watchlist-star" disabled={this.state.waiting}>
                 {this.state.checked ?
                 <IconContext.Provider value={{color: 'rgb(244, 198, 34)', fontSize:'16px'}}>

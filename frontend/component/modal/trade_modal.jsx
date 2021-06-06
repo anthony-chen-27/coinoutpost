@@ -5,13 +5,21 @@ import Selltab from './sell_tab'
 import SelectAsset from './select_asset'
 import { connect } from 'react-redux'
 
+const mSTP = ({coins}) => {
+    return {
+        coins
+    }
+}
+
 
 class Trademodal extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {header: 0, display: 0}
+        this.state = {header: 0, display: 0, buyselect: 1, sellselect: 1}
         this.changeHeader = this.changeHeader.bind(this)
         this.changeDisplay = this.changeDisplay.bind(this)
+        this.buyselect = this.buyselect.bind(this)
+        this.sellselect = this.sellselect.bind(this)
     }
 
     changeHeader(i) {
@@ -25,12 +33,22 @@ class Trademodal extends React.Component {
     changeDisplay(i) {
         this.setState({display: i})
     }
-//    height: 540px;
+
+    buyselect(i) {
+        this.setState({buyselect: i, display: 0})
+    }
+    
+    sellselect(i) {
+        this.setState({sellselect: i, display: 0})
+    }
+
     render() {
+        const {display} = this.state
+        console.log(this.state.sellselect)
         return (
         <div> 
             <div className='graybg' onClick={this.props.toggleBuy}> 
-                <div className='trade-modal' style={{height: this.state.display === 1 ? '600px' : '540px'}}>
+                <div className='trade-modal' style={{height: display == 1 || display == 2 ? '600px' : '540px'}}>
                     { this.state.display === 0 ? 
                         <div>
                             <div className='modal-header'>
@@ -42,13 +60,16 @@ class Trademodal extends React.Component {
                                 </div>
                             </div>
                             { this.state.header === 0 ?
-                            <Buytab action={this.changeDisplay}/>
-                            : <Selltab />
+                            <Buytab action={this.changeDisplay} selected={this.state.buyselect} coin={this.props.coins[this.state.buyselect]}/>
+                            : <Selltab action={this.changeDisplay} selected={this.state.sellselect} coin={this.props.coins[this.state.sellselect]}/>
                             }
                         </div>
                     : null}
                     { this.state.display === 1 ? 
-                        <SelectAsset action={this.changeDisplay}/>
+                        <SelectAsset action={this.changeDisplay} changeSelect={this.buyselect} selected={this.state.buyselect}/>
+                    : null}
+                    { this.state.display === 2 ? 
+                        <SelectAsset action={this.changeDisplay} changeSelect={this.sellselect} selected={this.state.sellselect}/>
                     : null}
                 </div>
             </div>
@@ -56,4 +77,4 @@ class Trademodal extends React.Component {
     }
 }
 
-export default Trademodal
+export default connect(mSTP, null)(Trademodal)

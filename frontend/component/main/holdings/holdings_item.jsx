@@ -8,7 +8,6 @@ const capitalize = (string) => {
 class HoldingsItem extends React.Component {
     constructor(props) {
         super(props)
-        console.log(props)
     }
 
     render() {

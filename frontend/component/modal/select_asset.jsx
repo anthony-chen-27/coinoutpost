@@ -14,19 +14,37 @@ const capitalize = (string) => {
     return string[0].toUpperCase() + string.substring(1)
 }
 
-const Assetlistitem = ({coin}) => {
+const Assetlistitem = ({coin, selected, index, change}) => {
     let {shorthand, name} = coin
     let args = {name: shorthand.toLowerCase(), color: COIN_COLORS[shorthand].slice(1)}
-    let url = `https://api.iconify.design/cryptocurrency:${args.name}.svg?color=%23${args.color}&width=25px&height=25px`
-    return <li><img src={url}/> : {capitalize(name)} :: {shorthand} </li>
+    let url = `https://api.iconify.design/cryptocurrency:${args.name}.svg?color=%23${args.color}&width=30px&height=30px`
+    return (
+    <li marked={selected ? 1 : 0} onClick={() => {change(index)}}>
+        <img style={{width: '35px', height: '35px', marginLeft:'20px'}} src={url}/>
+        <div className="asset-list-item">
+            <span>{capitalize(name)}</span>
+            <span>{shorthand}</span>
+        </div>
+    </li>)
 }
 
 class Selectasset extends React.Component {
     constructor(props) {
         super(props)
+        this.state = {render: false}
     }
 
+    componentDidMount() {
+        setTimeout(() => this.setState({render: true}), 100)
+    }
+
+
+    
     render() {
+        if (!this.state.render) {
+            return null
+        }
+        console.log(this.props.selected)
         return (
             <div>
                 <div className='select-asset-header'>
@@ -37,7 +55,7 @@ class Selectasset extends React.Component {
                 </div>
                 <ul className='select-asset-list'> 
                     {this.props.coins.map((coin, i) => {
-                        return <Assetlistitem key={i} coin={coin}/>
+                        return <Assetlistitem key={i} index={i + 1} coin={coin} selected={this.props.selected === i + 1 ? 1 : 0} change={this.props.changeSelect}/>
                     })}
                 </ul>
             </div>

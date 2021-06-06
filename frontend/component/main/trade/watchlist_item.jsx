@@ -22,7 +22,6 @@ class WatchlistItem extends React.Component {
 
 
     handleClick(e) {
-        console.log(this.state.checked)
         e.preventDefault()
         this.setState({waiting: true})
         if (!this.state.checked) {

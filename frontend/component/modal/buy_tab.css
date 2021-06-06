@@ -29,7 +29,15 @@
     color: rgb(121, 120, 120);
     font-size: 14px;
     font-weight: 400;
-    width: 25%;
+    width: 30%;
+}
+
+.modal-btn-info {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: -0.2px;
 }
 
 .chevron {

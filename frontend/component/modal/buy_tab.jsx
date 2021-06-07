@@ -2,22 +2,27 @@ import React from 'react'
 import './buy_tab.css'
 import {IoIosArrowForward} from 'react-icons/io'
 import * as COIN_COLORS from 'crypto-colors'
+import { connect } from 'react-redux'
 
 const capitalize = (string) => {
     return string[0].toUpperCase() + string.substring(1)
 }
 
+const mSTP = ({entities: {users}, session}) => {
+    return {
+        currentUser: users[session.id],
+    }
+}
 
 class Buytab extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {value: props.amount, error: ''}
+        this.state = {value: this.props.amount, error: ''}
         this.handleChange = this.handleChange.bind(this)
         this.handlebuy = this.handlebuy.bind(this)
     }
 
     componentWillUnmount() {
-        console.log('unmounting')
         if (this.state.error != '') this.props.cHeight('460px')
     }
 
@@ -49,16 +54,13 @@ class Buytab extends React.Component {
                 return
             } else if (isNaN(e.target.value.slice(1))) {
                 return 
-            } else if (e.target.value.split(".").length == 2) {
-                if (e.target.value.split('.')[1].length > 2) {
-                    return
-                } else {
-                    this.setState({value: e.target.value})
-                }
             } else {
-                if (parseFloat(e.target.value.slice(1)) > 50) {
+                if (e.target.value.split(".").length == 2) {
+                    if (e.target.value.split('.')[1].length > 2) return
+                }
+                if (parseFloat(e.target.value.slice(1)) > this.props.currentUser.amount) {
                     this.props.cHeight('480px')
-                    this.setState({value: e.target.value, error: 'he feet too big'})
+                    this.setState({value: e.target.value, error: "You don't have enough to cover this purchase"})
                     return 
                 }
                 if (this.state.error != '') this.props.cHeight('460px')
@@ -106,7 +108,7 @@ class Buytab extends React.Component {
                 {shorthand} Balance
                 <div>
                     {holding ? 
-                    `${holding.amount} ${shorthand} ≈ ${(holding.amount * this.props.price).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}`
+                    `${holding.amount.toFixed(2)} ${shorthand} ≈ ${(holding.amount * this.props.price).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}`
                     : `0 ${shorthand} ≈ $0.00`}
                 </div>
             </div>
@@ -114,4 +116,4 @@ class Buytab extends React.Component {
     }
 }
 
-export default Buytab
+export default connect(mSTP, null)(Buytab)

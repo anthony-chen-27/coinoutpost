@@ -28,6 +28,7 @@
 
 .select-asset-back:hover {
     background-color: #fafafa;
+    cursor: pointer;
 }
 
 .select-asset-list {

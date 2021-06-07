@@ -34,16 +34,14 @@ class Selltab extends React.Component {
                 return
             } else if (isNaN(e.target.value.slice(1))) {
                 return 
-            } else if (e.target.value.split(".").length == 2) {
-                if (e.target.value.split('.')[1].length > 2) {
-                    return
-                } else {
-                    this.setState({value: e.target.value})
-                }
             } else {
-                if (parseFloat(e.target.value.slice(1)) > 50) {
+                if (e.target.value.split(".").length == 2) {
+                    if (e.target.value.split('.')[1].length > 2) return
+                }
+                let holding = this.props.holdings.find((ele) => ele.cryptoId == this.props.coin.id)
+                if (parseFloat(e.target.value.slice(1)) > holding.amount * this.props.price) {
                     this.props.cHeight('480px')
-                    this.setState({value: e.target.value, error: 'he feet too big'})
+                    this.setState({value: e.target.value, error: "You don't have enough to sell"})
                     return 
                 }
                 if (this.state.error != '') this.props.cHeight('460px')
@@ -105,7 +103,7 @@ class Selltab extends React.Component {
                 {shorthand} Balance
                 <div>
                     {holding ? 
-                    `${holding.amount} ${shorthand} ≈ ${(holding.amount * this.props.price).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}`
+                    `${holding.amount.toFixed(2)} ${shorthand} ≈ ${(holding.amount * this.props.price).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}`
                     : `0 ${shorthand} ≈ $0.00`}
                 </div>
             </div>

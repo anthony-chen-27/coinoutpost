@@ -34,7 +34,7 @@ const App = ({currentUser, loggedIn}) => {
                     <AuthRoute exact path='/'> <Splash /> </AuthRoute>
                     <AuthRoute path='/login'> <Login /> </AuthRoute>
                     <AuthRoute path='/signup'> <Signup /> </AuthRoute>
-                    {/* <ProtectedRoute exact path='/dashboard'> <Dashboard /> </ProtectedRoute> */}
+                    <ProtectedRoute exact path='/dashboard'> <Dashboard /> </ProtectedRoute>
                     <ProtectedRoute exact path='/holdings'> <Holdings user={currentUser}/> </ProtectedRoute>
                     <ProtectedRoute exact path='/trade'> <Trade user={currentUser}/> </ProtectedRoute>
                     <DefaultRoute path="*" />

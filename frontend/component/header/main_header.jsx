@@ -33,7 +33,7 @@ class Mainheader extends React.Component {
 
     toggleBuy(e) {
         e.preventDefault()
-        if (e.target.className === 'header-buy-btn') {
+        if (e.target.className === 'header-buy-btn' || e.target.className === 'preview-trade-btn') {
             this.setState({ open: !this.state.open})
         } else if (e.target.className !== 'graybg') {
             return
@@ -58,7 +58,7 @@ class Mainheader extends React.Component {
                             <FaUserCircle />
                         </IconContext.Provider>
                         <span>{this.props.currentUser.firstName}</span>
-                        <CSSTransition in={!this.state.hidden} timeout={{}} unmountOnExit classNames='user-dropdown'>
+                        <CSSTransition in={!this.state.hidden} timeout={{enter: 0, exit: 150}} unmountOnExit classNames='user-dropdown'>
                             <div>
                                 <div className="user-dropdown-menu" >
                                     <IconContext.Provider value={{style: {color: 'lightgray', fontSize: '60px', marginTop: '30px'}}}>
@@ -74,7 +74,7 @@ class Mainheader extends React.Component {
                             </div>
                         </CSSTransition>
                     </div>
-                    <CSSTransition in={this.state.open} timeout={{}}
+                    <CSSTransition in={this.state.open} timeout={{enter: 0, exit: 200}}
                         unmountOnExit classNames='trade-modal'>
                         <Trademodal toggleBuy={this.toggleBuy}/>
                     </CSSTransition>

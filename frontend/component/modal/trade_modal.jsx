@@ -42,7 +42,6 @@ class Trademodal extends React.Component {
     }
 
     changeDisplay(i) {
-        console.log("changing display")
         if (i == 1 || i == 2) {
             this.setState({display: i, height: '500px'})
         } else if (i == 3 || i == 4) {
@@ -67,11 +66,11 @@ class Trademodal extends React.Component {
     }
 
     buyselect(i) {
-        this.setState({buyselect: i, display: 0})
+        this.setState({buyselect: i, display: 0, height: '460px'})
     }
     
     sellselect(i) {
-        this.setState({sellselect: i, display: 0})
+        this.setState({sellselect: i, display: 0, height: '460px'})
     }
 
     render() {
@@ -114,10 +113,10 @@ class Trademodal extends React.Component {
                         <SelectFund action={this.changeDisplay} name={'Deposit to'}/>
                     : null}
                     { this.state.display === 5 ? 
-                        <Preview action={this.changeDisplay} amount={this.state.buyamount} price={this.props.prices[buycoin.name].usd} type={'buy'} coin={buycoin} holdings={this.props.holdings}/>
+                        <Preview action={this.changeDisplay} amount={this.state.buyamount} price={this.props.prices[buycoin.name].usd} type={'buy'} coin={buycoin} holdings={this.props.holdings} close={this.props.toggleBuy}/>
                     : null}
                     { this.state.display === 6 ? 
-                        <Preview action={this.changeDisplay} amount={this.state.sellamount} price={this.props.prices[sellcoin.name].usd} type={'sell'} coin={sellcoin} holdings={this.props.holdings}/>
+                        <Preview action={this.changeDisplay} amount={this.state.sellamount} price={this.props.prices[sellcoin.name].usd} type={'sell'} coin={sellcoin} holdings={this.props.holdings} close={this.props.toggleBuy}/>
                     : null}
                 </div>
             </div>

@@ -2,10 +2,28 @@ import React from 'react'
 import { connect } from 'react-redux'
 import './preview.css'
 import { ImArrowLeft2 } from 'react-icons/im'
+import { createTransaction } from '../../action/transaction_action'
+
+const mSTP = ({entities: {users}, session}) => {
+    return {
+        currentUser: users[session.id],
+    }
+}
 
 class Preview extends React.Component {
     constructor(props) {
         super(props)
+        this.handleClick = this.handleClick.bind(this)
+    }
+
+    handleClick(amount, price, e) {
+        if (this.props.type == 'buy') {
+            this.props.createTransaction({sender_id: null, receiver_id: this.props.currentUser.id, crypto_id: this.props.coin.id, amount: parseFloat((amount / price).toFixed(8)), total: amount})
+            this.props.close(e)
+        } else {
+            this.props.createTransaction({sender_id: this.props.currentUser.id, receiver_id: null, crypto_id: this.props.coin.id, amount: parseFloat((amount / price).toFixed(8)), total: amount})
+            this.props.close(e)
+        }
     }
 
     render() {
@@ -35,12 +53,12 @@ class Preview extends React.Component {
                         <div>{this.props.type == 'buy' ? 'Purchase' : 'Sale'} <div>{amount.toLocaleString('en-US', {style: 'currency', currency: 'USD'})}</div></div>
                         <div>Total <div>{amount.toLocaleString('en-US', {style: 'currency', currency: 'USD'})}</div></div>
                     </div>
-                    <button className='preview-trade-btn'>{this.props.type == 'buy' ? 'Buy now' : 'Sell now'}</button>
+                    <button className='preview-trade-btn' onClick={(e) => {this.handleClick(amount, price, e)}}>{this.props.type == 'buy' ? 'Buy now' : 'Sell now'}</button>
                     <div className='modal-holding-info'>
                         {shorthand} Balance
                         <div>
                             {holding ? 
-                            `${holding.amount} ${shorthand} ≈ ${(holding.amount * this.props.price).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}`
+                            `${holding.amount.toFixed(2)} ${shorthand} ≈ ${(holding.amount * this.props.price).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}`
                             : `0 ${shorthand} ≈ $0.00`}
                         </div>
                     </div>
@@ -50,4 +68,4 @@ class Preview extends React.Component {
     }
 }
 
-export default Preview
+export default connect(mSTP, {createTransaction})(Preview)

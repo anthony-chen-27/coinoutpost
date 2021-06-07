@@ -34,11 +34,10 @@
     list-style: none;
     position: relative;
     top: 60px;
-    height: 540px;
+    height: 440px;
     overflow-y: scroll;
     margin: 0;
     padding: 0;
-    transition: all 2s;
 }
 
 .select-asset-list li {
@@ -82,4 +81,28 @@
     color: rgb(121 118 118);
     font-size: 14px;
     font-weight: 300;
+}
+
+.select-fund-list {
+    list-style: none;
+    position: relative;
+    top: 60px;
+    height: 400px;
+    margin: 0;
+    padding: 0;
+}
+
+.select-fund-list li {
+    height: 70px;
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+}
+
+
+.select-fund-list li[marked='1'] {
+    color: #1652f0;
+    background-color: #fafafa;
+    pointer-events: none;
 }

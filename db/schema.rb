@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_04_190220) do
+ActiveRecord::Schema.define(version: 2021_06_07_174302) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2021_06_04_190220) do
   create_table "holdings", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "crypto_id", null: false
-    t.integer "amount", null: false
+    t.float "amount", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id", "crypto_id"], name: "index_holdings_on_user_id_and_crypto_id", unique: true
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2021_06_04_190220) do
     t.integer "sender_id"
     t.integer "receiver_id"
     t.integer "crypto_id", null: false
-    t.integer "amount", null: false
+    t.float "amount", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["receiver_id"], name: "index_transactions_on_receiver_id"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2021_06_04_190220) do
     t.string "session_token", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "amount"
+    t.float "amount"
     t.index ["session_token"], name: "index_users_on_session_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
   end

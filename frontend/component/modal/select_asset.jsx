@@ -17,7 +17,7 @@ const capitalize = (string) => {
 const Assetlistitem = ({coin, selected, index, change}) => {
     let {shorthand, name} = coin
     let args = {name: shorthand.toLowerCase(), color: COIN_COLORS[shorthand].slice(1)}
-    let url = `https://api.iconify.design/cryptocurrency:${args.name}.svg?color=%23${args.color}&width=30px&height=30px`
+    let url = `https://api.iconify.design/cryptocurrency:${args.name}.svg?color=%23${args.color}&width=35px&height=35px`
     return (
     <li marked={selected ? 1 : 0} onClick={() => {change(index)}}>
         <img style={{width: '35px', height: '35px', marginLeft:'20px'}} src={url}/>
@@ -44,7 +44,6 @@ class Selectasset extends React.Component {
         if (!this.state.render) {
             return null
         }
-        console.log(this.props.selected)
         return (
             <div>
                 <div className='select-asset-header'>

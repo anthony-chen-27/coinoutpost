@@ -7,11 +7,13 @@ import { updateUi } from '../../action/ui_action'
 import { IoIosHome } from 'react-icons/io'
 import { AiFillPieChart } from 'react-icons/ai'
 import { RiArrowLeftRightFill} from 'react-icons/ri'
+import { fetchHoldings } from '../../action/holding_action'
 
 
-const mSTP = ({coins}) => {
+const mSTP = ({coins, entities: {users}, session}) => {
     return {
         coins,
+        currentUser: users[session.id],
     }
 }
 class Sidebar extends React.Component {
@@ -21,7 +23,7 @@ class Sidebar extends React.Component {
 
     componentDidMount() {
         const {coins} = this.props
-        this.props.getCurrentPrice(coins).then(() => this.props.updateUi(false))
+        Promise.all([this.props.fetchHoldings(this.props.currentUser.id), this.props.getCurrentPrice(coins)]).then(() => this.props.updateUi(false))
         this.timer = setInterval(() => this.props.getCurrentPrice(coins), 60000)
     }
 
@@ -60,4 +62,4 @@ class Sidebar extends React.Component {
     }
 }
 
-export default withRouter(connect(mSTP, {getCurrentPrice, updateUi})(Sidebar))
+export default withRouter(connect(mSTP, {getCurrentPrice, updateUi, fetchHoldings})(Sidebar))

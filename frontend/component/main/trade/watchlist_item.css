@@ -1,6 +1,64 @@
-.watchlist-star {
-    width: 16px;
-    height: 16px;
+.trade-watchlist {
+    width: 95%;
+    margin: 0 auto;
+    background-color: white;
+    margin-top: 40px;
+}
+
+.trade-watchlist-header {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 5% auto 9% 9% 9% 5%;
+    margin: 0 auto;
+    font-size: 14px;
+    height: 50px;
+    border-bottom: 1px solid #eceff1;
+    color: rgba(17, 51, 83, 0.6);
+}
+
+.trade-watchlist-header div {
+    margin: auto 0;
+}
+
+.trade-watchlist-header div:first-child {
+    margin-left: 30%;
+}
+
+.watchlist-list {
+    padding-left: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.watchlist-item {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 5% auto 9% 9% 9% 5%;
+    margin: 0 auto;
+    height: 60px;
+    border-bottom: 1px solid #eceff1;
+}
+
+.watchlist-item div {
+    margin: auto 0;
+}
+
+.watchlist-item div:first-child {
+    margin-left: 30%;
+    color: rgba(17, 51, 83, 0.6);
+}
+
+.watchlist-item div:last-child {
+    margin-left: 5%;
+}
+
+.watchlist-item-icon-info {
+    display: flex;
+    align-items: center;
+}
+
+.watchlist-item-icon-info > * {
+    margin-right: 1%;
 }
 
 .watchlist-star:hover {
@@ -9,8 +67,4 @@
 
 .watchlist-star[disabled] {
     pointer-events: none;
-}
-
-.watchlist-item {
-    display: flex;
 }

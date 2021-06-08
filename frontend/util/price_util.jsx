@@ -9,7 +9,8 @@ export const fetchCurrentPrices = (coins) => {
         data: {
             ids,
             vs_currencies,
-            include_24hr_change: true
+            include_24hr_change: true,
+            include_market_cap: true
         }
     })
 }

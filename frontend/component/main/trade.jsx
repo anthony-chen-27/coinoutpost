@@ -27,12 +27,24 @@ class Trade extends React.Component {
         if (this.state.loading || this.props.ui.loading) {
             return null
         }
+        let {prices} = this.props
         let coins = Object.values(this.props.coins)
         return (
-            <div className='watchlist'>
-                <ul>
-                    {coins.map((coin, index) => <WatchlistItem key={index} coin={coin} user={this.props.user}/>)}
+            <div className='trade-watchlist'>
+                <div className='trade-watchlist-header'>
+                    <div>#</div>
+                    <div>Name</div>
+                    <div>Price</div>
+                    <div>Change</div>
+                    <div>Market cap</div>
+                    <div>Watch</div>
+                </div>
+                <ul className='watchlist-list'>
+                    {coins.map((coin, index) => <WatchlistItem key={index} index={index} coin={coin} price={prices[coin.name].usd} mcap={prices[coin.name].usd_market_cap} change={prices[coin.name].usd_24h_change}user={this.props.user}/>)}
                 </ul>
+                <div>
+                    Hello
+                </div>
             </div>
         )
     }

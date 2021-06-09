@@ -7,8 +7,8 @@ import DashboardGraph from './dashboard/dashboard_graph.jsx'
 import './dashboard.css'
 
 
-function calculateBalance(holdings, prices, coins) {
-    let total = 0
+function calculateBalance(holdings, prices, coins, usd) {
+    let total = usd
     holdings.forEach((holding) => {
         total += holding.amount * prices[coins[holding.cryptoId].name].usd 
     })
@@ -29,7 +29,7 @@ const mSTP = ({session, entities: { users, holdings, watchlist}, coins, prices},
 const Defaultitem = () => {
     return (
         <div className='default-graph-item'>
-            <Link to='/'>Hello</Link>
+            <Link to='/trade'>{'Discover more assets >'}</Link>
         </div>
     )
 }
@@ -68,20 +68,25 @@ class Dashboard extends React.Component {
         const {currentUser, coins} = this.props
         let balance = 0
         if (!jQuery.isEmptyObject(this.props.prices.current)) {
-            balance = calculateBalance(this.props.holdings, this.props.prices.current, coins)
+            balance = calculateBalance(this.props.holdings, this.props.prices.current, coins, currentUser.amount)
         }
         let watchlist = Object.values(this.props.watchlist).slice(0, 6)
         const style = styling(watchlist.length)
         return (
             <div className='dashboard'>
-                <h2>This is the dashboard</h2>
-                <h3>Welcome {currentUser.firstName} {currentUser.lastName}</h3>
-                <h3>user_id: {currentUser.id}</h3>
-                <h3>username: {currentUser.username}</h3>
-                <h3>Current Balance is : {balance} </h3>
-                <div className='watchlist-grid' style={{gridTemplateColumns:style.style}}>
-                    {watchlist.map((watch, i) => {return <DashboardGraph key={i} coin={coins[watch.cryptoId]}/>})}
-                    {style.fill ? <Defaultitem /> : null}
+                <div className="dashboard-greeting">
+                    <span>Welcome {currentUser.firstName} {currentUser.lastName}</span>
+                    <span>Current Balance is : {balance} </span>
+                </div>
+                <div className='watchlist-graph-container'>
+                    <div className='watchlist-graph-header'><span style={{marginLeft: '1.5%', fontWeight:'550', fontSize: '18px'}}>Watchlist</span></div>
+                    <div className='watchlist-graph-grid' style={{gridTemplateColumns:style.style}}>
+                        {watchlist.map((watch, i) => {return <DashboardGraph key={i} coin={coins[watch.cryptoId]}/>})}
+                        {style.fill ? <Defaultitem /> : null}
+                    </div>
+                    {!style.fill ? <div className='watchlist-graph-footer'>
+                        <Link to='/trade'>{'Discover more assets >'}</Link>
+                    </div> : null }
                 </div>
             </div>
         )

@@ -60,8 +60,8 @@ class Dashboardgraph extends React.Component {
                 <div className='coin-graph-info'>
                     <span style={{fontWeight: 600, fontSize: '18px'}}>{this.props.current[this.props.coin.name].usd.toLocaleString('en-US', {style: 'currency', currency: 'USD'})}</span>
                     {change >= 0 ? 
-                    <span style={{color: 'green'}}>{change}%</span> :
-                    <span style={{color: 'red'}}>{change}%</span>}
+                    <span style={{color: 'rgb(5, 177, 105)'}}>+{change}%</span> :
+                    <span style={{color: 'rgb(223, 95, 103)'}}>{change}%</span>}
                 </div>
                 <Sparklines data={data}>
                     <SparklinesLine color={COIN_COLORS[shorthand]} style={{ fill: "none", strokeWidth: 1}}/>

@@ -5,6 +5,7 @@ import { Sparklines, SparklinesLine } from 'react-sparklines';
 import * as COIN_COLORS from 'crypto-colors'
 import './dashboard_graphic.css'
 import ClipLoader from 'react-spinners/ClipLoader'
+import { Link } from 'react-router-dom';
 
 const mSTP = ({prices, coins, ui}, {coin}) => {
     return {
@@ -66,6 +67,7 @@ class Dashboardgraph extends React.Component {
                 <Sparklines data={data}>
                     <SparklinesLine color={COIN_COLORS[shorthand]} style={{ fill: "none", strokeWidth: 1}}/>
                 </Sparklines>
+                <div className="coin-graph-overlay"><Link to='/trade'>View asset</Link></div>
             </div>
             )
         }

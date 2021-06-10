@@ -18,10 +18,10 @@ class Preview extends React.Component {
 
     handleClick(amount, price, e) {
         if (this.props.type == 'buy') {
-            this.props.createTransaction({sender_id: null, receiver_id: this.props.currentUser.id, crypto_id: this.props.coin.id, amount: parseFloat((amount / price).toFixed(8)), total: amount})
+            this.props.createTransaction({sender_id: null, receiver_id: this.props.currentUser.id, crypto_id: this.props.coin.id, amount: parseFloat((amount / price).toFixed(8)), total: amount, price: this.props.price})
             this.props.close(e)
         } else {
-            this.props.createTransaction({sender_id: this.props.currentUser.id, receiver_id: null, crypto_id: this.props.coin.id, amount: parseFloat((amount / price).toFixed(8)), total: amount})
+            this.props.createTransaction({sender_id: this.props.currentUser.id, receiver_id: null, crypto_id: this.props.coin.id, amount: parseFloat((amount / price).toFixed(8)), total: amount, price: this.props.price})
             this.props.close(e)
         }
     }

@@ -42,9 +42,6 @@ class Trade extends React.Component {
                 <ul className='watchlist-list'>
                     {coins.map((coin, index) => <WatchlistItem key={index} index={index} coin={coin} price={prices[coin.name].usd} mcap={prices[coin.name].usd_market_cap} change={prices[coin.name].usd_24h_change}user={this.props.user}/>)}
                 </ul>
-                {/* <div style={{backgroundColor: 'rgb(246, 249, 252)'}}>
-                    Hello
-                </div> */}
             </div>
         )
     }

@@ -98,7 +98,7 @@ class Dashboard extends React.Component {
                 <div className='greeting-buy'>
                     <div style={{display: 'flex', flexDirection: 'column'}}>
                         <div style={{fontWeight: '500', marginBottom: '3%'}}>Buy and sell cryptocurrency instantly!</div>
-                        <button className='greeting-buy-btn' onClick={this.handleTrade}>Trade</button>
+                        <button id='greeting-buy-btn' onClick={this.handleTrade}>Trade</button>
                     </div>
                     <img src='https://api.iconify.design/noto:coin.svg' style={{width: '60px', height: '60px'}}/>
                 </div>

@@ -1,6 +1,6 @@
 class Api::TransactionsController < ApplicationController
     def index()
-        @transactions = User.find(params[:id]).transactions.order(:created_at)
+        @transactions = User.find(params[:id]).transactions.order(created_at: :desc)
         render :index
     end
 
@@ -19,7 +19,7 @@ class Api::TransactionsController < ApplicationController
                 else
                     holding.update({amount: holding.amount + parameters[:amount].to_f})
                 end
-                @transaction = Transaction.create({sender_id: nil, receiver_id: parameters[:receiver_id], crypto_id: parameters[:crypto_id], amount: parameters[:amount].to_f})
+                @transaction = Transaction.create({sender_id: nil, receiver_id: parameters[:receiver_id], crypto_id: parameters[:crypto_id], amount: parameters[:amount].to_f, price: parameters[:price].to_f})
                 render :show
             end
         #Selling Crypto, check that user has enough cryptos to sell
@@ -34,7 +34,7 @@ class Api::TransactionsController < ApplicationController
                 else
                     user.update({amount: user.amount + parameters[:total].to_f})
                     holding.update({amount: holding.amount - parameters[:amount].to_f})
-                    @transaction = Transaction.create({sender_id: parameters[:sender_id], receiver_id: nil, crypto_id: parameters[:crypto_id], amount: parameters[:amount].to_f})
+                    @transaction = Transaction.create({sender_id: parameters[:sender_id], receiver_id: nil, crypto_id: parameters[:crypto_id], amount: parameters[:amount].to_f, price: parameters[:price].to_f})
                     render :show
                 end
             end
@@ -42,6 +42,6 @@ class Api::TransactionsController < ApplicationController
     end
 
     def transaction_params
-        params.require(:transaction).permit(:sender_id, :receiver_id, :crypto_id, :amount, :total)
+        params.require(:transaction).permit(:sender_id, :receiver_id, :crypto_id, :amount, :total, :price)
     end
 end

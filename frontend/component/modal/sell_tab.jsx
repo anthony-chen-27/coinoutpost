@@ -22,8 +22,14 @@ class Selltab extends React.Component {
 
     handleChange(e) {
         e.preventDefault()
+        let holding = this.props.holdings.find((ele) => ele.cryptoId == this.props.coin.id) || {amount: 0}
         if (this.state.value === '') {
             if (!isNaN(parseInt(e.target.value))) {
+                if (parseFloat(e.target.value) > holding.amount * this.props.price) {
+                    this.props.cHeight('480px')
+                    this.setState({value:`$${e.target.value}`, error: "You don't have enough to sell"})
+                    return 
+                }
                 if (this.state.error != '') this.props.cHeight('460px')
                 this.setState({value: `$${e.target.value}`, error: ''})
             }
@@ -38,7 +44,6 @@ class Selltab extends React.Component {
                 if (e.target.value.split(".").length == 2) {
                     if (e.target.value.split('.')[1].length > 2) return
                 }
-                let holding = this.props.holdings.find((ele) => ele.cryptoId == this.props.coin.id)
                 if (parseFloat(e.target.value.slice(1)) > holding.amount * this.props.price) {
                     this.props.cHeight('480px')
                     this.setState({value: e.target.value, error: "You don't have enough to sell"})

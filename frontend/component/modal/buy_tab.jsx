@@ -44,6 +44,11 @@ class Buytab extends React.Component {
         e.preventDefault()
         if (this.state.value === '') {
             if (!isNaN(parseInt(e.target.value))) {
+                if (parseFloat(e.target.value) > this.props.currentUser.amount) {
+                    this.props.cHeight('480px')
+                    this.setState({value:`$${e.target.value}`, error: "You don't have enough to cover this purchase"})
+                    return 
+                }
                 if (this.state.error != '') this.props.cHeight('460px')
                 this.setState({value: `$${e.target.value}`, error:''})
             }

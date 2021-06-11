@@ -8,7 +8,9 @@ import { IoIosHome } from 'react-icons/io'
 import { AiFillPieChart } from 'react-icons/ai'
 import { RiArrowLeftRightFill} from 'react-icons/ri'
 import { fetchHoldings } from '../../action/holding_action'
-
+import { IconContext } from 'react-icons'
+import { FaAngellist } from 'react-icons/fa'
+import { AiFillGithub, AiFillLinkedin } from 'react-icons/ai'
 
 const mSTP = ({coins, entities: {users}, session}) => {
     return {
@@ -56,7 +58,17 @@ class Sidebar extends React.Component {
                         </div>
                     </li>
                 </ul>
-                <div className='testcircle'></div>        
+                <div className='sidebar-footer'>
+                    <a href="https://github.com/simpleistruth">
+                        <IconContext.Provider value={{style: {fontSize: '20px'}}}><AiFillGithub /></IconContext.Provider>
+                    </a>
+                    <a href="https://www.linkedin.com/in/anthony-c-b8250b126/">
+                        <IconContext.Provider value={{style: {fontSize: '20px'}}}><AiFillLinkedin /></IconContext.Provider>
+                    </a>
+                    <a href="https://angel.co/u/anthony-chen-18">
+                        <IconContext.Provider value={{style: {fontSize: '20px'}}}><FaAngellist /></IconContext.Provider>
+                    </a>
+                </div>
             </div>
         )
     }

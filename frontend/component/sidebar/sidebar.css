@@ -68,3 +68,21 @@
     justify-content: center;
     margin-left: 10px;
 }
+
+.sidebar-footer {
+    display: flex;
+    width: 100%;
+    background-color: white;
+    align-items: center;
+    justify-content: center;
+    margin-top: calc(100vh - 300px);
+}
+
+
+.sidebar-footer a {
+    color: black;
+    margin: 0 20px;
+}
+
+
+

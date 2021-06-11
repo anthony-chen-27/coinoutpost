@@ -2,9 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import './transaction_item.css'
 
-const mSTP = ({coins}) => {
+const mSTP = ({coins, ui}) => {
     return {
-        coins
+        coins,
+        ui
     }
 }
 
@@ -37,6 +38,9 @@ class TransactionItem extends React.Component {
     }
 
     render() {
+        if (this.props.ui.loading) {
+            return null
+        }
         const {transact, coins} = this.props
         const time = transact.createdAt.slice(0,10)
         const date = new Date(time.slice(0, 4), time.slice(5, 7), time.slice(8)).toLocaleString('en-US', {year: 'numeric', month: 'long', day: 'numeric'})

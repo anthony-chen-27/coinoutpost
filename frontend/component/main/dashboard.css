@@ -92,3 +92,43 @@
     border-top: 1px solid rgba(191, 191, 191, 0.4);
     border-bottom: 1px solid rgba(191, 191, 191, 0.4);
 }
+
+.dashboard-infographics {
+    width: 90%;
+    margin: 25px auto;
+    display: flex;
+    align-items: flex-start;
+}
+
+.dashboard-infographics-holdings {
+    background-color: white;
+    width: 49%;
+    margin-right: 2%;
+    border-style: none;
+    border-radius: 3px;
+}
+
+.dashboard-infographics-transactions {
+    background-color: white;
+    width: 49%;
+    border-bottom: 1px solid #eceff1;
+    border-style: none;
+    border-radius: 3px;
+}
+
+.dashboard-infographics-footer {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.dashboard-infographics-footer  a {
+    color: rgba(17, 51, 83, 0.6)
+}
+
+.dashboard-infographics-footer :hover {
+    color: rgb(22, 82, 240);
+    cursor: pointer;
+}

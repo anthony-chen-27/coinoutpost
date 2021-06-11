@@ -77,8 +77,6 @@ class Holdings extends React.Component {
                     </div>
                     <ul className='holding-list'>
                         <USDItem amount={this.props.currentUser.amount} total={total} />
-
-                        {/* {this.props.holdings.map((holding, i) => {return <HoldingsItem coin={coins[holding.cryptoId]} holding={holding} key={i} price={currentPrice[coins[holding.cryptoId].name]} total={total}/>})} */}
                         {Object.values(coins).map((coin, i) => {return <HoldingsItem key={i} coin={coin} holding={holdings.find((ele) => ele.cryptoId == coin.id)} price={currentPrice[coin.name]} total={total}/>})}
                     </ul>
                 </div>
@@ -86,9 +84,13 @@ class Holdings extends React.Component {
                     <div className='holding-transaction-header'>
                         Recent transactions
                     </div>
-                    <ul className='holding-transaction-list'>
+                    {transactions.length > 0 ? <ul className='holding-transaction-list'>
                         {transactions.map((transact, index) => {return <TransactionItem transact={transact} key={index}/>})}
-                    </ul>
+                    </ul> : 
+                    <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '300px', borderBottom: '1px solid #eceff1'}}>
+                        <img src="https://api.iconify.design/emojione:money-bag.svg" style={{height: '50px', width: '50px', marginBottom: '20px'}}/>
+                        <span style={{fontWeight: '500'}}>You haven't made any transactions yet!</span>
+                    </div>}
                 </div>
             </div>
         )

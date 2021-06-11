@@ -51,20 +51,17 @@ In addition, the trade-modal is comprised of several different components, in or
 
 ```
 this.state = {header: 0, display: 0, ....}
-.
-.
+...
+
 render() {
-  .
-  .
+  ...
   { this.state.display === 1 ? 
       <SelectAsset action={this.changeDisplay} changeSelect={this.buyselect} selected={this.state.buyselect}/>
   : null}
   { this.state.display === 2 ? 
       <SelectAsset action={this.changeDisplay} changeSelect={this.sellselect} selected={this.state.sellselect}/>
   : null}
-  .
-  .
-  .
+  ...
 }
 ```
 

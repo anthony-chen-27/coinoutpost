@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Redirect, Switch, Link } from 'react-router-dom'
+import {Switch} from 'react-router-dom'
 import Splash from './splash/splash'
 import Login from './session/login'
 import Signup from './session/signup'

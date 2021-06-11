@@ -29,7 +29,6 @@ class HoldingsItem extends React.Component {
         let args = {name: shorthand.toLowerCase(), color: COIN_COLORS[shorthand].slice(1)}
         let url = `https://api.iconify.design/cryptocurrency:${args.name}.svg?color=%23${args.color}&width=25px&height=25px`
         let alloc = (balance / this.props.total) * 100
-        console.log(balance, this.props.total)
         return (
         <li>
             <div>

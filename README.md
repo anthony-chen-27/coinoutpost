@@ -47,3 +47,24 @@ Combined with
     pointer-events: visible;
 }
 ```
+In addition, the trade-modal is comprised of several different components, in order to figure out which one to render, I created a property in the state to keep track of a value called display, with each component being associated with a specific value. Thus, I could simply call a function to change the current display value, and it would allow me to switch between the different components.
+
+```
+this.state = {header: 0, display: 0, ....}
+.
+.
+render() {
+  .
+  .
+  { this.state.display === 1 ? 
+      <SelectAsset action={this.changeDisplay} changeSelect={this.buyselect} selected={this.state.buyselect}/>
+  : null}
+  { this.state.display === 2 ? 
+      <SelectAsset action={this.changeDisplay} changeSelect={this.sellselect} selected={this.state.sellselect}/>
+  : null}
+  .
+  .
+  .
+}
+```
+

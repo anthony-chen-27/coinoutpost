@@ -65,3 +65,8 @@ render() {
 }
 ```
 
+Each display value was also associated with a height value, which affects the trade-modal's height. This permitted smooth height change with the use of a height transition in the CSS
+```
+transition: opacity 0.2s ease-in-out, height 0.2s ease-out;
+```
+

@@ -9,6 +9,11 @@
 - PostgreSQL as database
 - React for frontend framework
   - And numerous react libraries such as react-icons
+- Heroku as the hosting service
+
+# Highlighted features
+** Trade modal **
+![](https://imgur.com/RHV0cse)
 
 
 

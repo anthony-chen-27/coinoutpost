@@ -13,7 +13,7 @@
 
 # Highlighted features
 ** Trade modal **
-![image](https://imgur.com/RHV0cse)
+![image](https://i.imgur.com/RHV0cse.png)
 
 
 

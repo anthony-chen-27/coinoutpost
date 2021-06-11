@@ -23,3 +23,27 @@ The modal allows users to buy/sell cryptocurrencies from the site, I had alot of
     <Trademodal toggleBuy={this.toggleBuy}/>
 </CSSTransition>
 ```
+
+Combined with
+
+```
+.trade-modal {
+    position: fixed;
+    width: 380px;
+    top: calc(50vh - 270px);
+    left: calc(50vw - 190px);
+    background-color: white;
+    border-style: none;
+    border-radius: 3px;
+    opacity: 0;
+    height: auto;
+    max-height: 2000px;
+    transition: opacity 0.2s ease-in-out, height 0.2s ease-out;
+    pointer-events: none;
+}
+
+.trade-modal-enter-done *{
+    opacity: 1;
+    pointer-events: visible;
+}
+```

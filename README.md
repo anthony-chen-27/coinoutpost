@@ -4,4 +4,11 @@
 
 # [Coinoutpost](http://coinoutpost.herokuapp.com/) 
 
+## Technologies used in this project involves
+- Rails for backend
+- PostgreSQL as database
+- React for frontend framework
+  - And numerous react libraries such as react-icons
+
+
 

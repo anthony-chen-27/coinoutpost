@@ -129,7 +129,7 @@ class Dashboard extends React.Component {
                         <ul className='holding-list'>
                             {Object.values(coins).slice(0,5).map((coin, i) => {return <HoldingsItem key={i} coin={coin} holding={holdings.find((ele) => ele.cryptoId == coin.id)} price={this.props.prices.current[coin.name]} total={balance} load={true}/>})}
                         </ul>
-                        <div className="dashboard-infographics-footer"><Link to='/trade'>{`Total balance ≈ ${balance.toLocaleString('en-US', {style: 'currency', currency: 'USD'})} >`}</Link></div>
+                        <div className="dashboard-infographics-footer"><Link to='/holdings'>{`Total balance ≈ ${balance.toLocaleString('en-US', {style: 'currency', currency: 'USD'})} >`}</Link></div>
                     </div>
                     <div className='dashboard-infographics-transactions'>
                         <div style={{padding: '20px 2%', borderBottom: '1px solid #eceff1', fontSize: '20px', fontWeight: '500'}}>

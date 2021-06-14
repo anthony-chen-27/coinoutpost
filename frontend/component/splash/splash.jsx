@@ -87,7 +87,7 @@ const Splash = () => {
                     </div>
                 </div>
                 <div className='splash-footer'>
-                    <a href="https://github.com/simpleistruth">
+                    <a href="https://github.com/simpleistruth/coinoutpost">
                         <IconContext.Provider value={{style: {fontSize: '20px'}}}><AiFillGithub /></IconContext.Provider>
                     </a>
                     <a href="https://www.linkedin.com/in/anthony-c-b8250b126/">

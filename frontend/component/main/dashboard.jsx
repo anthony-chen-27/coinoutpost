@@ -143,7 +143,7 @@ class Dashboard extends React.Component {
                                 <span style={{fontWeight: '500'}}>You haven't made any transactions yet!</span>
                             </div>}
                         </ul>
-                        <div className="dashboard-infographics-footer"><Link to='/trade'>{'View portfolio >'}</Link></div>
+                        <div className="dashboard-infographics-footer"><Link to='/holdings'>{'View portfolio >'}</Link></div>
                     </div>
                 </div>
             </div>

@@ -80,7 +80,7 @@ class Signup extends React.Component {
                             <button style={{marginBottom: 16, marginTop:16}} onClick={this.handleSubmit} disabled={disabled} className='session-signup-btn'>Create account</button>
                             <button onClick={this.demo} className='session-signup-btn'>Demo user</button>
                         </div>
-                        <div className='redirect-to-login'>Already have a Coinbase account? <Link to='/login'>Log in</Link></div>
+                        <div className='redirect-to-login'>Already have a Coinoutpost account? <Link to='/login'>Log in</Link></div>
                     </div>
                 </div>
             </div>

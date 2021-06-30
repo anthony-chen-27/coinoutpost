@@ -108,6 +108,10 @@
     border-radius: 3px;
 }
 
+.dashboard-infographics-holdings span{
+    margin-right: 10%;
+}
+
 .dashboard-infographics-transactions {
     background-color: white;
     width: 49%;

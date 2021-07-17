@@ -43,7 +43,7 @@ class TransactionItem extends React.Component {
         }
         const {transact, coins} = this.props
         const time = transact.createdAt.slice(0,10)
-        const date = new Date(time.slice(0, 4), time.slice(5, 7), time.slice(8)).toLocaleString('en-US', {year: 'numeric', month: 'long', day: 'numeric'})
+        const date = new Date(time.slice(0, 4), time.slice(5, 7) - 1, time.slice(8)).toLocaleString('en-US', {year: 'numeric', month: 'long', day: 'numeric'})
         const amount = `${parseFloat(transact.amount.toFixed(8))} ${coins[transact.cryptoId].shorthand}`
         const total = (transact.amount * transact.price).toLocaleString('en-US', {style: 'currency', currency: 'USD'})
         return (
